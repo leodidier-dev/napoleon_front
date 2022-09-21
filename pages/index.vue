@@ -1,7 +1,11 @@
 <template>
-  <section class="home">
+  <section>
     <Navbar />
-    <div class="hero">
+    <div class="main-card">
+      <div class="img-w">
+          <img src="https://images.pexels.com/photos/4204094/pexels-photo-4204094.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="">
+      </div>
+      <h2>Base de données</h2>
     </div>
   </section>
 </template>
@@ -44,22 +48,38 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .home {
-    
-    .hero {
-      position: relative;
-      
-      img {
+  .main-card {
+    position: relative;
+    height: calc(100vh - 60px);
+
+    .img-w {
+      height: 100%;
+      width: 100%;
+
+      &:before {
+        content: '';
         position: absolute;
-        height: 70vh;
+        height: 100%;
+        width: 100%;
+        inset: 0;
+        background-color: rgba(black, 0.3);
+      }
+
+      img {
+        height: 100%;
         width: 100%;
         object-fit: cover;
       }
+    }
 
-      .text-w {
-        position: absolute;
-        z-index: 1;
-      }
+    h2 {
+      position: absolute;
+      top: 45%;
+      left: 48px;
+      color: white;
+      font-weight: 700;
+      font-size: 48px;
+      text-transform: uppercase;
     }
   }
 </style>
