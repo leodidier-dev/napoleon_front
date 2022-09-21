@@ -1,0 +1,18 @@
+@mixin fs-h1 {
+    font-weight: 800;
+	font-size: 16rem;
+	line-height: 100%;
+	letter-spacing: 0;
+    text-transform: uppercase;
+
+	@include tablet {
+		font-size: 18rem;
+	}
+
+	@include desktop {
+		font-size: 30rem;
+	}
+}
+.fs-h1 {
+	@include fs-h1;
+}
