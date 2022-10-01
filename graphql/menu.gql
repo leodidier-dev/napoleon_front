@@ -1,0 +1,24 @@
+query {
+  renderNavigation (navigationIdOrSlug: "main-navigation") 
+  {
+    id
+    title
+    path
+    type
+    parent {
+      id
+    }
+    
+    related {
+      id
+      attributes {
+        __typename
+
+        ... on Article {
+          Title
+          Slug
+        }
+      }
+    }
+  }
+}
