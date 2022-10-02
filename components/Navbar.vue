@@ -24,6 +24,7 @@
 <script>
 import menuQuery from "~/graphql/menu";
 export default {
+    name: "Navbar",
     data() {
         return {
             renderNavigation: {
@@ -47,7 +48,6 @@ export default {
     },
 
     mounted(){
-        console.log(process.env)
     }
 };
 </script>

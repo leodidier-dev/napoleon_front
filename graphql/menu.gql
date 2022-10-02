@@ -1,5 +1,5 @@
 query {
-  renderNavigation (navigationIdOrSlug: "main-navigation") 
+  renderNavigation (navigationIdOrSlug: "menu") 
   {
     id
     title

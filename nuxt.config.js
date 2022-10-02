@@ -72,21 +72,21 @@ export default {
   },
 
   apollo: {
-    includeNodeModules: true,
-    clientConfigs: {
-      default: '@/graphql/config/default.js' // This is where you'll set up the client and import the possible fragment types
-    }
-  
+    // includeNodeModules: true,
     // clientConfigs: {
-    //   default: {
-    //     httpEndpoint: process.env.API_ENDPOINT,
-    //     httpLinkOptions: {
-    //       headers: {
-    //         'Authorization' : 'bearer a50f284abf8672542833fde1d9d595d753b0d58d4d19265885e3bcc7ef222ae2afe7a5fed99e3f48f5d10c7e4d4f55ed027ff76222d000be7edea56d848b44a9e5c868d859ef7b0c44a7738e95e05d2c2e9f90abf7b29a7eaa119818dbe2ef64ea5366316e4d4f8613f0cc9caae72da7f34b99cea7b428af8efbfa21114bceb1'
-    //       }
-    //     }
-    //   }
+    //   default: '@/graphql/config/default.js' // This is where you'll set up the client and import the possible fragment types
     // }
+  
+    clientConfigs: {
+      default: {
+        httpEndpoint: process.env.API_ENDPOINT,
+        httpLinkOptions: {
+          headers: {
+            'Authorization' : 'bearer a50f284abf8672542833fde1d9d595d753b0d58d4d19265885e3bcc7ef222ae2afe7a5fed99e3f48f5d10c7e4d4f55ed027ff76222d000be7edea56d848b44a9e5c868d859ef7b0c44a7738e95e05d2c2e9f90abf7b29a7eaa119818dbe2ef64ea5366316e4d4f8613f0cc9caae72da7f34b99cea7b428af8efbfa21114bceb1'
+          }
+        }
+      }
+    }
   },
 
   env: {

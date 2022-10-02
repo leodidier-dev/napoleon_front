@@ -10,9 +10,27 @@
 	}
 
 	@include desktop {
-		font-size: 20rem;
+		font-size: 18rem;
 	}
 }
 .fs-h1 {
 	@include fs-h1;
+}
+
+@mixin fs-p {
+    font-weight: 400;
+	font-size: 18rem;
+	line-height: 100%;
+	letter-spacing: 0;
+
+	@include tablet {
+		font-size: 24rem;
+	}
+
+	@include desktop {
+		font-size: 18rem;
+	}
+}
+.fs-p {
+	@include fs-p;
 }

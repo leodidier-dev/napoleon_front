@@ -1,6 +1,5 @@
 <template>
   <section>
-    <Navbar />
     <div class="main-card">
       <div class="img-w">
           <img src="https://images.pexels.com/photos/4204094/pexels-photo-4204094.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="">

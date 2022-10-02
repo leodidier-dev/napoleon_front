@@ -4,12 +4,7 @@ query Article($slug: String!) {
             id
              attributes {
                 Title
-                Content { 
-                    __typename 
-                    ... on ComponentModuleText {
-           		        Text
-                    }
-                }
+                Content
 	        }
         }
     }
