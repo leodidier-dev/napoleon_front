@@ -1,0 +1,18 @@
+query getCategories {
+  categories {
+    data {
+        id
+      attributes {
+        name
+        articles {
+          data {
+            attributes {
+                slug
+                title
+            }
+          }
+        }
+      }
+    }
+  }
+}

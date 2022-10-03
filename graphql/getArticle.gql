@@ -1,0 +1,18 @@
+query getArticle($slug: String!) {
+	articles(filters: {slug: {eq: $slug}}){
+        data{
+            id
+             attributes {
+                title
+                content
+                category { 
+                	data { 
+                  	    attributes {
+                            name
+                        }
+                    }
+                }
+	        }
+        }
+    }
+}

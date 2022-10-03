@@ -1,38 +1,42 @@
 <template>
-    <div id="article-content" >
-        <h1 class="title">{{ title }}</h1>
+    <div v-if="!loading" id="article-content">
+        <h1 class="title">{{ title }} - {{ category }}</h1>
         <div class="content" v-html="content"></div>
     </div>
 </template>
 
 <script>
-import articleQuery from "~/graphql/article";
+import getArticle from "~/graphql/getArticle";
 export default {
     data() {
         return {
-            articles: {
-                data: [],
-            },
+            articles: {}, 
+            loading: 0
         };
     },
     apollo: {
+        $loadingKey: 'loading',
         articles: {
             prefetch: true,
-            query: articleQuery,
+            query: getArticle,
             variables() {
-                return { slug: this.$route.params.slug };
+                return { 
+                    slug: this.$route.params.slug 
+                };
             },
         },
     },
     mounted(){
-        console.log(this.articles.data[0].attributes.Content)
     },
     computed: {
+        category() {
+            return this.articles.data[0].attributes.category.data.attributes.name;
+        },
         title() {
-            return this.articles.data[0].attributes.Title
+            return this.articles.data[0].attributes.title;
         },
         content() {
-            return this.articles.data[0].attributes.Content
+            return this.articles.data[0].attributes.content;
         }
     },
 };

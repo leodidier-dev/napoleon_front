@@ -3,47 +3,40 @@
         <h1 class="fs-h1">Premier empire dans le Bas-Rhin</h1>
         <ul class="menu">
             <li v-for="parent in parents" :key="parent.id" class="item">
-                <nuxt-link v-if="parent.type !='WRAPPER'" :to="`article/${parent.related.attributes.Slug}`">
-                    {{parent.title}}
-                </nuxt-link>
-                <div v-else>
-                    <button>{{parent.title}}</button>
-                    <ul class="dropdown">
-                        <li v-for="child in childs(parent.id)" :key="child.id">
-                            <nuxt-link :to="`article/${child.related.attributes.Slug}`">
-                                {{child.title}}
-                            </nuxt-link>
-                        </li>
-                    </ul>
-                </div>
+                <button>{{parent.attributes.name}}</button>
+                <ul class="dropdown">
+                    <li v-for="child in childs(parent.attributes)" :key="child.attributes.slug">
+                        <nuxt-link :to="`article/${child.attributes.slug}`">
+                            {{child.attributes.title}}
+                        </nuxt-link>
+                    </li>
+                </ul>
             </li>
         </ul>
     </nav>
 </template>
 
 <script>
-import menuQuery from "~/graphql/menu";
+import getCategories from "~/graphql/getCategories";
 export default {
     name: "Navbar",
     data() {
         return {
-            renderNavigation: {
-                data: []
-            }
+            categories: {}
         };
     },
     apollo: {
-        renderNavigation: {
+        categories: {
             prefetch: true,
-            query: menuQuery,
+            query: getCategories,
         },
     },
     computed: {
         parents() {
-            return this.renderNavigation.filter(i => i.parent === null)
+            return this.categories.data;
         },
         childs() {
-            return parent => this.renderNavigation.filter(i => i.parent?.id === parent)
+            return parent => parent.articles.data
         }
     },
 
