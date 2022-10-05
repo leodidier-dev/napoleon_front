@@ -1,6 +1,7 @@
 <template>
     <div v-if="!loading" id="article-content">
-        <h1 class="title">{{ title }} - {{ category }}</h1>
+        <h2 class="fs-article-category">{{ category }}</h2>
+        <h1 class="fs-article-title">{{ title }}</h1>
         <div class="content" v-html="content"></div>
     </div>
 </template>
@@ -48,15 +49,16 @@ export default {
     max-width: 80%;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 50px;
 
-    .title {
-        @include fs-h1;
-    }
     .content {
+        margin-top: 30px;
+
         h1 {
            @include fs-h1;
-            margin-top: 20px;
+            margin-top: 40px;
         }
+
         p {
             @include fs-p;
             text-align: justify;

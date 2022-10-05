@@ -1,5 +1,44 @@
+@mixin fs-nav-title {
+	@include thunder-bold;
+	font-size: 16rem;
+	line-height: 100%;
+	letter-spacing: 0.05em;
+    text-transform: uppercase;
+	color: $gold;
+
+	@include tablet {
+		font-size: 18rem;
+	}
+
+	@include desktop {
+		font-size: 30rem;
+	}
+}
+.fs-nav-title{
+	@include fs-nav-title;
+}
+
 @mixin fs-h1 {
-    font-weight: 800;
+	@include thunder-bold;
+	font-size: 16rem;
+	line-height: 100%;
+	letter-spacing: 0.05em;
+    text-transform: uppercase;
+
+	@include tablet {
+		font-size: 18rem;
+	}
+
+	@include desktop {
+		font-size: 22rem;
+	}
+}
+.fs-h1 {
+	@include fs-h1;
+}
+
+@mixin fs-h2 {
+    @include thunder-bold;
 	font-size: 16rem;
 	line-height: 100%;
 	letter-spacing: 0;
@@ -10,25 +49,68 @@
 	}
 
 	@include desktop {
-		font-size: 18rem;
+		font-size: 50rem;
 	}
 }
-.fs-h1 {
-	@include fs-h1;
+.fs-h2 {
+	@include fs-h2;
+}
+
+@mixin fs-article-title {
+    @include thunder-bold;
+	font-size: 16rem;
+	// line-height: 100%;
+	letter-spacing: 0;
+    text-transform: uppercase;
+	color: #A81B1C;
+
+	@include tablet {
+		font-size: 18rem;
+	}
+
+	@include desktop {
+		font-size: 90rem;
+	}
+}
+.fs-article-title{
+	@include fs-article-title;
+}
+
+@mixin fs-article-category {
+    @include thunder-bold;
+	font-size: 16rem;
+	line-height: 100%;
+	letter-spacing: 0.05em;
+    text-transform: uppercase;
+	color: #022859;
+
+	@include tablet {
+		font-size: 18rem;
+	}
+
+	@include desktop {
+		font-size: 35rem;
+	}
+}
+.fs-article-category{
+	@include fs-article-category;
 }
 
 @mixin fs-p {
-    font-weight: 400;
+	@include open-sans-400;
+    font-weight: 500;
 	font-size: 18rem;
 	line-height: 100%;
 	letter-spacing: 0;
+	// color: #202124;
+	letter-spacing: 0.05em;
 
 	@include tablet {
 		font-size: 24rem;
 	}
 
 	@include desktop {
-		font-size: 18rem;
+		font-size: 20rem;
 	}
 }
 .fs-p {

@@ -1,6 +1,6 @@
 <template>
     <nav>
-        <h1 class="fs-h1">Premier empire dans le Bas-Rhin</h1>
+        <nuxt-link to="/" class="fs-nav-title">Premier empire dans le Bas-Rhin</nuxt-link>
         <ul class="menu">
             <li v-for="parent in parents" :key="parent.id" class="item">
                 <button>{{parent.attributes.name}}</button>
@@ -53,15 +53,18 @@ nav {
     align-items: center;
     height: 60px;
     padding: 0 24px;
+    box-shadow:0px 1px 1px rgba($gold, 1);
 
     .menu {
         display: flex;
         column-gap: 20px;
 
         li, button {
+            color: $gold;
             display: inline;
-            font-weight: 600;
-            font-size: 14rem;
+            @include thunder-bold;
+            font-size: 20rem;
+            letter-spacing: 0.03em;
             text-transform: uppercase;
             position: relative;
         }
@@ -76,7 +79,7 @@ nav {
                     bottom: -8px;
                     width: 100%;
                     height: 1px;
-                    background-color: black;
+                    background-color: $gold;
                     transform: scale(0);
                     transition: transform 0.4s ease-out;
                 }
@@ -92,7 +95,7 @@ nav {
                 opacity: 0;
                 transform: translate(-10px, 10px);
                 min-width: 100px;
-                background: white;
+                background: $white;
                 transition: all 0.2s ease-in;
                 padding-bottom: 6px;
 

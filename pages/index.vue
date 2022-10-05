@@ -75,7 +75,7 @@ export default {
       position: absolute;
       top: 45%;
       left: 48px;
-      color: white;
+      color: $white;
       font-weight: 700;
       font-size: 48px;
       text-transform: uppercase;

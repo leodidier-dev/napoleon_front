@@ -58,6 +58,7 @@ export default {
     scss: [
       './assets/scss/variables/*.scss',
       './assets/scss/breakpoints.scss',
+      './assets/scss/fonts.scss',
       './assets/scss/fonts-styles.scss',
     ]
   },

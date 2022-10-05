@@ -1,5 +1,5 @@
 @font-face {
-    font-family: 'Open Sans';
+    font-family: 'Open Sans 300';
     font-style: normal;
     font-weight: 300;
     src: local(''),
@@ -8,7 +8,7 @@
 }
 
 @font-face {
-    font-family: 'Open Sans';
+    font-family: 'Open Sans 400';
     font-style: normal;
     font-weight: 400;
     src: local(''),
@@ -17,7 +17,7 @@
 }
 
 @font-face {
-    font-family: 'Open Sans';
+    font-family: 'Open Sans 700';
     font-style: normal;
     font-weight: 700;
     src: local(''),
@@ -26,10 +26,51 @@
 }
 
 @font-face {
-    font-family: 'Open Sans';
+    font-family: 'Open Sans 800';
     font-style: normal;
     font-weight: 800;
     src: local(''),
         url('assets/fonts/open-sans-v34-latin-800.woff2') format('woff2'),
         url('assets/fonts/open-sans-v34-latin-800.woff') format('woff')
   }
+
+  @font-face {
+    font-family: 'Lora Regular';
+    font-style: normal;
+    src: local(''),
+        url('assets/fonts/Lora-Regular.ttf') format('truetype')
+  }
+
+  @font-face {
+    font-family: 'Thunder Exra Bold';
+    font-style: normal;
+    src: local(''),
+        url('assets/fonts/Thunder-ExtraBoldLC.woff2') format('woff2')
+  }
+
+  @font-face {
+    font-family: 'Thunder Light';
+    font-style: normal;
+    src: local(''),
+        url('assets/fonts/Thunder-LightLC.woff2') format('woff2')
+  }
+
+  @font-face {
+    font-family: 'Thunder Bold';
+    font-style: normal;
+    src: local(''),
+        url('assets/fonts/Thunder-BoldLC.woff2') format('woff2')
+  }
+
+  @mixin open-sans-400 {
+    font-family: 'Thunder Light';
+  }
+
+  @mixin open-sans-700 {
+    font-family: 'Thunder Exra Bold';
+  }
+  
+  @mixin thunder-bold {
+    font-family: 'Thunder Bold';
+  }
+  
