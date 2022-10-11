@@ -1,5 +1,5 @@
 @mixin fs-nav-title {
-	@include thunder-bold;
+	@include thunder-semi-bold;
 	font-size: 16rem;
 	line-height: 100%;
 	letter-spacing: 0.05em;
@@ -97,7 +97,7 @@
 }
 
 @mixin fs-p {
-	@include open-sans-400;
+	@include thunder-light;
     font-weight: 500;
 	font-size: 18rem;
 	line-height: 100%;
@@ -115,4 +115,23 @@
 }
 .fs-p {
 	@include fs-p;
+}
+
+@mixin fs-caption {
+	@include thunder-semi-bold;
+	font-size: 16rem;
+	line-height: 100%;
+	letter-spacing: 0.05em;
+    text-transform: uppercase;
+
+	@include tablet {
+		font-size: 18rem;
+	}
+
+	@include desktop {
+		font-size: 18rem;
+	}
+}
+.fs-caption{
+	@include fs-caption;
 }

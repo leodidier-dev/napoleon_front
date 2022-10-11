@@ -53,7 +53,7 @@ nav {
     align-items: center;
     height: 60px;
     padding: 0 24px;
-    box-shadow:0px 1px 1px rgba($gold, 1);
+    box-shadow: 15px 0.5px 80px rgba($gold, 1);
 
     .menu {
         display: flex;
@@ -62,7 +62,7 @@ nav {
         li, button {
             color: $gold;
             display: inline;
-            @include thunder-bold;
+            @include thunder-semi-bold;
             font-size: 20rem;
             letter-spacing: 0.03em;
             text-transform: uppercase;
