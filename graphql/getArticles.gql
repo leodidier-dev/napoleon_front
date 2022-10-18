@@ -1,14 +1,14 @@
-query getCategories {
-  categories {
+query getArticles {
+  articles {
     data {
-      id
       attributes {
-        name
-        articles {
+        slug
+        abstract
+        title
+        image {
           data {
             attributes {
-              slug
-              title
+              url
             }
           }
         }

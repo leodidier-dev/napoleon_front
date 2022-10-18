@@ -31,7 +31,6 @@ export default {
   },
 
   mounted() {
-    console.log(this.articles);
     const formattedContent = this.content.replaceAll(
       "/uploads/",
       process.env.API_STORAGE

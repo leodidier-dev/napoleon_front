@@ -2,91 +2,19 @@
   <section>
     <div class="embla" ref="embla">
       <div class="embla__container">
-        <div class="embla__slide">
+        <div
+          class="embla__slide"
+          v-for="(article, index) in articles.data"
+          :key="index"
+          :data-slug="article.attributes.slug"
+        >
           <div class="slide-content">
-            <h2 class="fs-h2">Les régiments</h2>
-            <img
-              src="https://images.pexels.com/photos/4204094/pexels-photo-4204094.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-              alt=""
-            />
+            <h2 class="fs-h2">{{ article.attributes.title }}</h2>
+            <div class="picture-w">
+              <img :src="formattedUrlImage(article)" alt="" />
+            </div>
             <p class="fs-p">
-              Ce travail gigantesque ne pouvant être publié en un seul volume,
-              nous avons choisi de découper le résultat en volumes successifs.
-              Chaque fascicule concernera un canton du département. Entre 1791
-              et 1814, son organisation a plusieurs fois évolué. La loi du 28
-              pluviôse an VIII réorganisa le département. En 1801 et 1802 la
-              suppression d’un certain nombre de cantons (Diemeringen,
-              Fort-Vauban, Harskirchen, Ingwiller, …) et la création de deux
-              nouveaux cantons Seltz et Woerth, y apportèrent une touche finale.
-              Il nous a paru intéressant de choisir la répartition
-              administrative telle qu’elle existait à cette époque et qui était
-              arrivé à une certaine stabilité dans son aménagement.
-            </p>
-          </div>
-        </div>
-        <div class="embla__slide">
-          <div class="slide-content">
-            <h2 class="fs-h2">Les régiments</h2>
-            <img
-              src="https://images.pexels.com/photos/4204094/pexels-photo-4204094.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-              alt=""
-            />
-            <p class="fs-p">
-              Ce travail gigantesque ne pouvant être publié en un seul volume,
-              nous avons choisi de découper le résultat en volumes successifs.
-              Chaque fascicule concernera un canton du département. Entre 1791
-              et 1814, son organisation a plusieurs fois évolué. La loi du 28
-              pluviôse an VIII réorganisa le département. En 1801 et 1802 la
-              suppression d’un certain nombre de cantons (Diemeringen,
-              Fort-Vauban, Harskirchen, Ingwiller, …) et la création de deux
-              nouveaux cantons Seltz et Woerth, y apportèrent une touche finale.
-              Il nous a paru intéressant de choisir la répartition
-              administrative telle qu’elle existait à cette époque et qui était
-              arrivé à une certaine stabilité dans son aménagement.
-            </p>
-          </div>
-        </div>
-        <div class="embla__slide">
-          <div class="slide-content">
-            <h2 class="fs-h2">Les régiments</h2>
-            <img
-              src="https://images.pexels.com/photos/4204094/pexels-photo-4204094.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-              alt=""
-            />
-            <p class="fs-p">
-              Ce travail gigantesque ne pouvant être publié en un seul volume,
-              nous avons choisi de découper le résultat en volumes successifs.
-              Chaque fascicule concernera un canton du département. Entre 1791
-              et 1814, son organisation a plusieurs fois évolué. La loi du 28
-              pluviôse an VIII réorganisa le département. En 1801 et 1802 la
-              suppression d’un certain nombre de cantons (Diemeringen,
-              Fort-Vauban, Harskirchen, Ingwiller, …) et la création de deux
-              nouveaux cantons Seltz et Woerth, y apportèrent une touche finale.
-              Il nous a paru intéressant de choisir la répartition
-              administrative telle qu’elle existait à cette époque et qui était
-              arrivé à une certaine stabilité dans son aménagement.
-            </p>
-          </div>
-        </div>
-        <div class="embla__slide">
-          <div class="slide-content">
-            <h2 class="fs-h2">Les régiments</h2>
-            <img
-              src="https://images.pexels.com/photos/4204094/pexels-photo-4204094.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-              alt=""
-            />
-            <p class="fs-p">
-              Ce travail gigantesque ne pouvant être publié en un seul volume,
-              nous avons choisi de découper le résultat en volumes successifs.
-              Chaque fascicule concernera un canton du département. Entre 1791
-              et 1814, son organisation a plusieurs fois évolué. La loi du 28
-              pluviôse an VIII réorganisa le département. En 1801 et 1802 la
-              suppression d’un certain nombre de cantons (Diemeringen,
-              Fort-Vauban, Harskirchen, Ingwiller, …) et la création de deux
-              nouveaux cantons Seltz et Woerth, y apportèrent une touche finale.
-              Il nous a paru intéressant de choisir la répartition
-              administrative telle qu’elle existait à cette époque et qui était
-              arrivé à une certaine stabilité dans son aménagement.
+              {{ article.attributes.abstract }}
             </p>
           </div>
         </div>
@@ -107,9 +35,24 @@ import Vue from "vue";
 import TextModule from "@/components/TextModule";
 import EmblaCarousel from "embla-carousel";
 import gsap from "gsap";
+import getArticles from "~/graphql/getArticles";
 
 export default {
   name: "IndexPage",
+
+  async asyncData({ app }) {
+    const client = app.apolloProvider.defaultClient;
+
+    const res = await client.query({
+      query: getArticles,
+    });
+
+    const { articles } = res.data;
+
+    return {
+      articles,
+    };
+  },
 
   data() {
     return {
@@ -127,10 +70,10 @@ export default {
   //   console.log(rows)
   // },
 
-  async asyncData({ $axios }) {
-    // let response = await $axios.$get(`/api/articles?populate=deep`);
-    // console.log(response.data[0].attributes.Content[0].__component)
-  },
+  // async asyncData({ $axios }) {
+  // let response = await $axios.$get(`/api/articles?populate=deep`);
+  // console.log(response.data[0].attributes.Content[0].__component)
+  //},
 
   mounted() {
     const emblaNode = document.querySelector(".embla");
@@ -142,8 +85,18 @@ export default {
     this.embla.on("pointerUp", this.isNotGrabbing);
     this.embla.on("select", this.onSelect);
 
-    this.$refs.prev.addEventListener("click", this.prevSlide);
-    this.$refs.next.addEventListener("click", this.nextSlide);
+    this.$refs.prev.addEventListener("click", this.embla.scrollPrev);
+    this.$refs.next.addEventListener("click", this.embla.scrollNext);
+
+    this.embla.slideNodes().forEach((slide, index) => {
+      slide.addEventListener("click", (e) => this.onSlideClick(e, index));
+    });
+
+    //console.log(this.embla.slideNodes());
+
+    // this.embla.slideNodes().foreach((slide) => {
+    //   console.log(slide);
+    // });
     // let componentsList = ['TextModule', 'TextModule', 'TextModule']
     // componentsList.forEach(component => {
     //   if(component == 'TextModule') module = TextModule
@@ -161,22 +114,18 @@ export default {
     isNotGrabbing() {
       this.$refs.embla.classList.remove("is-grabbing");
     },
-    prevSlide() {
-      this.embla.scrollPrev();
-    },
-    nextSlide() {
-      this.embla.scrollNext();
-    },
     onSelect() {
       const prevSlide =
         this.embla.slideNodes()[this.embla.previousScrollSnap()];
       const prevTitle = prevSlide.querySelector("h2");
+      const prevDescription = prevSlide.querySelector("p");
       const currSlide =
         this.embla.slideNodes()[this.embla.selectedScrollSnap()];
       const currTitle = currSlide.querySelector("h2");
+      const currDescription = currSlide.querySelector("p");
       const tl = gsap.timeline();
       tl.to(
-        prevTitle,
+        [prevTitle, prevDescription],
         {
           height: 0,
           opacity: 0,
@@ -186,7 +135,7 @@ export default {
         0
       );
       tl.to(
-        currTitle,
+        [currTitle, currDescription],
         {
           height: "auto",
           opacity: 1,
@@ -195,6 +144,26 @@ export default {
         },
         0.2
       );
+    },
+    onSlideClick(e, index) {
+      if (this.embla.clickAllowed())
+        this.$router.push(
+          "/article/" + this.embla.slideNodes()[index].dataset.slug
+        );
+      else {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    },
+  },
+
+  computed: {
+    formattedUrlImage() {
+      return (article) =>
+        article.attributes.image.data.attributes.url.replace(
+          "/uploads/",
+          process.env.API_STORAGE
+        );
     },
   },
 };
@@ -247,6 +216,7 @@ section {
     height: 100%;
   }
   .embla__slide {
+    cursor: pointer;
     height: 100%;
     flex: 0 0 80%;
     padding-left: 20px;
@@ -258,55 +228,40 @@ section {
       }
     }
 
+    &:not(:first-of-type) {
+      p {
+        height: 0;
+        opacity: 0;
+      }
+    }
+
+    &:hover {
+      img {
+        transform: scale(1.04);
+      }
+    }
+
     .slide-content {
       padding: 20px;
       border: 1px solid $black;
       box-shadow: 2px 2px 20px rgba($black, 0.5);
 
-      img {
-        width: 100%;
-        height: 500px;
-        object-fit: cover;
+      .picture-w {
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          height: 500px;
+          object-fit: cover;
+          transition: transform 0.4s ease-in-out;
+        }
       }
 
       p {
         margin-top: 40px;
+        overflow: hidden;
       }
     }
   }
 }
-// .main-card {
-//   position: relative;
-//   height: calc(100vh - 60px);
-
-//   .img-w {
-//     height: 100%;
-//     width: 100%;
-
-//     &:before {
-//       content: '';
-//       position: absolute;
-//       height: 100%;
-//       width: 100%;
-//       inset: 0;
-//       background-color: rgba(black, 0.3);
-//     }
-
-//     img {
-//       height: 100%;
-//       width: 100%;
-//       object-fit: cover;
-//     }
-//   }
-
-//   h2 {
-//     position: absolute;
-//     top: 45%;
-//     left: 48px;
-//     color: $white;
-//     font-weight: 700;
-//     font-size: 48px;
-//     text-transform: uppercase;
-//   }
-// }
 </style>
