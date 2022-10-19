@@ -1,8 +1,6 @@
 <template>
   <nav>
-    <nuxt-link to="/" class="fs-nav-title"
-      >Premier empire dans le Bas-Rhin</nuxt-link
-    >
+    <nuxt-link to="/" class="fs-nav-title">Premier empire dans le Bas-Rhin</nuxt-link>
     <ul class="menu">
       <li class="item">
         <nuxt-link to="/about"> A propos </nuxt-link>
@@ -10,10 +8,7 @@
       <li v-for="parent in parents" :key="parent.id" class="item">
         <button>{{ parent.attributes.name }}</button>
         <ul class="dropdown">
-          <li
-            v-for="child in childs(parent.attributes)"
-            :key="child.attributes.slug"
-          >
+          <li v-for="child in childs(parent.attributes)" :key="child.attributes.slug">
             <nuxt-link :to="`/article/${child.attributes.slug}`">
               {{ child.attributes.title }}
             </nuxt-link>
@@ -21,29 +16,21 @@
         </ul>
       </li>
     </ul>
-    <div class="burger-cta" ref="burgerCta" @click="toggleMbMenu">
+    <div ref="burgerCta" class="burger-cta" @click="toggleMbMenu">
       <span></span>
       <span></span>
       <span></span>
       <span></span>
     </div>
-    <div class="mb-menu" ref="mbMenu">
+    <div ref="mbMenu" class="mb-menu">
       <ul>
         <li class="fs-li-menu-mb">
           <nuxt-link to="/about"> A propos </nuxt-link>
         </li>
-        <li
-          v-for="parent in parents"
-          :key="parent.id"
-          class="fs-sub-li-menu-mb parent-li-mb"
-        >
+        <li v-for="parent in parents" :key="parent.id" class="fs-sub-li-menu-mb parent-li-mb">
           {{ parent.attributes.name }}
           <ul>
-            <li
-              v-for="child in childs(parent.attributes)"
-              :key="child.attributes.slug"
-              class="fs-li-menu-mb"
-            >
+            <li v-for="child in childs(parent.attributes)" :key="child.attributes.slug" class="fs-li-menu-mb">
               <nuxt-link :to="`article/${child.attributes.slug}`">
                 {{ child.attributes.title }}
               </nuxt-link>
@@ -56,9 +43,9 @@
 </template>
 
 <script>
-import getCategories from "~/graphql/getCategories";
+import getCategories from '~/graphql/getCategories';
 export default {
-  name: "Navbar",
+  name: 'NavbarComp',
   data() {
     return {
       categories: {},
@@ -83,8 +70,8 @@ export default {
 
   methods: {
     toggleMbMenu() {
-      this.$refs.burgerCta.classList.toggle("open");
-      this.$refs.mbMenu.classList.toggle("open");
+      this.$refs.burgerCta.classList.toggle('open');
+      this.$refs.mbMenu.classList.toggle('open');
     },
   },
 };
@@ -122,7 +109,7 @@ nav {
     .item {
       button {
         &:before {
-          content: "";
+          content: '';
           position: absolute;
           z-index: 3;
           bottom: -8px;
@@ -233,6 +220,7 @@ nav {
   }
 
   .mb-menu {
+    display: none;
     padding: 32px 32px 68px 32px;
     transform: translateX(100%);
     height: calc(100vh - 62px);

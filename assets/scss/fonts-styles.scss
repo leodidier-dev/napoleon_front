@@ -1,3 +1,44 @@
+@mixin fs-cta {
+	@include thunder-semi-bold;
+	font-size: 18rem;
+	line-height: 100%;
+	letter-spacing: 0.05em;
+    text-transform: uppercase;
+	color: $black;
+
+	@include tablet {
+		font-size: 24rem;
+	}
+
+	@include desktop {
+		font-size: 30rem;
+	}
+}
+.fs-cta{
+	@include fs-cta;
+}
+
+@mixin fs-intro {
+	@include thunder-light;
+	font-size: 22rem;
+	line-height: 100%;
+	letter-spacing: 0.05em;
+	color: $white;
+
+	@include tablet {
+		font-size: 24rem;
+	}
+
+	@include desktop {
+		font-size: 30rem;
+	}
+}
+.fs-intro{
+	@include fs-intro;
+}
+
+
+
 @mixin fs-nav-title {
 	@include thunder-semi-bold;
 	font-size: 18rem;
@@ -7,7 +48,7 @@
 	color: $black;
 
 	@include tablet {
-		font-size: 18rem;
+		font-size: 24rem;
 	}
 
 	@include desktop {
@@ -39,13 +80,13 @@
 
 @mixin fs-h2 {
     @include thunder-bold;
-	font-size: 16rem;
+	font-size: 30rem;
 	line-height: 100%;
 	letter-spacing: 0;
     text-transform: uppercase;
 
 	@include tablet {
-		font-size: 18rem;
+		font-size: 60rem;
 	}
 
 	@include desktop {

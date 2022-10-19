@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import getArticle from "~/graphql/getArticle";
+import getArticle from '~/graphql/getArticle';
 export default {
   async asyncData({ app, params }) {
     const client = app.apolloProvider.defaultClient;
@@ -29,17 +29,6 @@ export default {
       articles,
     };
   },
-
-  mounted() {
-    const formattedContent = this.content.replaceAll(
-      "/uploads/",
-      process.env.API_STORAGE
-    );
-    const htmlContent = this.convertStringToHTML(
-      `<section class="content">${formattedContent}</section>`
-    );
-    this.$refs.articleW.append(htmlContent);
-  },
   computed: {
     category() {
       return this.articles.data[0].attributes.category.data.attributes.name;
@@ -51,14 +40,21 @@ export default {
       return this.articles.data[0].attributes.content;
     },
   },
+
+  mounted() {
+    const formattedContent = this.content.replaceAll('/uploads/', process.env.API_STORAGE);
+    const htmlContent = this.convertStringToHTML(`<section class="content">${formattedContent}</section>`);
+    this.$refs.articleW.append(htmlContent);
+  },
+
   methods: {
     convertStringToHTML(content) {
       const parser = new DOMParser();
-      const doc = parser.parseFromString(content, "text/html");
+      const doc = parser.parseFromString(content, 'text/html');
       return doc.body.firstChild;
     },
     scrollTop() {
-      this.$nuxt.$emit("scrollTop");
+      this.$nuxt.$emit('scrollTop');
     },
   },
 };

@@ -1,13 +1,8 @@
 <template>
   <section>
-    <div class="embla" ref="embla">
+    <div ref="embla" class="embla">
       <div class="embla__container">
-        <div
-          class="embla__slide"
-          v-for="(article, index) in articles.data"
-          :key="index"
-          :data-slug="article.attributes.slug"
-        >
+        <div v-for="(article, index) in articles.data" :key="index" class="embla__slide" :data-slug="article.attributes.slug">
           <div class="slide-content">
             <h2 class="fs-h2">{{ article.attributes.title }}</h2>
             <div class="picture-w">
@@ -19,10 +14,10 @@
           </div>
         </div>
       </div>
-      <button class="cta prev-cta" ref="prev">
+      <button ref="prev" class="cta prev-cta">
         <img src="~/assets/icons/arrow.svg" alt="" />
       </button>
-      <button class="cta next-cta" ref="next">
+      <button ref="next" class="cta next-cta">
         <img src="~/assets/icons/arrow.svg" alt="" />
       </button>
     </div>
@@ -30,15 +25,12 @@
 </template>
 
 <script>
-const { GoogleSpreadsheet } = require("google-spreadsheet");
-import Vue from "vue";
-import TextModule from "@/components/TextModule";
-import EmblaCarousel from "embla-carousel";
-import gsap from "gsap";
-import getArticles from "~/graphql/getArticles";
+import EmblaCarousel from 'embla-carousel';
+import { gsap } from 'gsap';
+import getArticles from '~/graphql/getArticles';
 
 export default {
-  name: "IndexPage",
+  name: 'IndexPage',
 
   async asyncData({ app }) {
     const client = app.apolloProvider.defaultClient;
@@ -60,69 +52,44 @@ export default {
     };
   },
 
-  // async mounted() {
-  //   const creds = require('../config/google_sheets.json')
-  //   const doc = new GoogleSpreadsheet('1L5-To9eGKp5X8675NtB1EMVCG0xzIvCY4CYDVlk_B7I');
-  //   await doc.useServiceAccountAuth(creds);
-  //   await doc.loadInfo();
-  //   let sheet = doc.sheetsByIndex[0];
-  //   let rows = await sheet.getRows()
-  //   console.log(rows)
-  // },
-
-  // async asyncData({ $axios }) {
-  // let response = await $axios.$get(`/api/articles?populate=deep`);
-  // console.log(response.data[0].attributes.Content[0].__component)
-  //},
+  computed: {
+    formattedUrlImage() {
+      return (article) => article.attributes.image.data.attributes.url.replace('/uploads/', process.env.API_STORAGE);
+    },
+  },
 
   mounted() {
-    const emblaNode = document.querySelector(".embla");
+    const emblaNode = document.querySelector('.embla');
     const options = { loop: true, speed: 8 };
 
     this.embla = EmblaCarousel(emblaNode, options);
 
-    this.embla.on("pointerDown", this.isGrabbing);
-    this.embla.on("pointerUp", this.isNotGrabbing);
-    this.embla.on("select", this.onSelect);
+    this.embla.on('pointerDown', this.isGrabbing);
+    this.embla.on('pointerUp', this.isNotGrabbing);
+    this.embla.on('select', this.onSelect);
 
-    this.$refs.prev.addEventListener("click", this.embla.scrollPrev);
-    this.$refs.next.addEventListener("click", this.embla.scrollNext);
+    this.$refs.prev.addEventListener('click', this.embla.scrollPrev);
+    this.$refs.next.addEventListener('click', this.embla.scrollNext);
 
     this.embla.slideNodes().forEach((slide, index) => {
-      slide.addEventListener("click", (e) => this.onSlideClick(e, index));
+      slide.addEventListener('click', (e) => this.onSlideClick(e, index));
     });
-
-    //console.log(this.embla.slideNodes());
-
-    // this.embla.slideNodes().foreach((slide) => {
-    //   console.log(slide);
-    // });
-    // let componentsList = ['TextModule', 'TextModule', 'TextModule']
-    // componentsList.forEach(component => {
-    //   if(component == 'TextModule') module = TextModule
-    //   let comp = Vue.extend(module)
-    //   let instance = new comp()
-    //   instance.$mount()
-    //   this.$refs.textW.appendChild(instance.$el)
-    // })
   },
 
   methods: {
     isGrabbing() {
-      this.$refs.embla.classList.add("is-grabbing");
+      this.$refs.embla.classList.add('is-grabbing');
     },
     isNotGrabbing() {
-      this.$refs.embla.classList.remove("is-grabbing");
+      this.$refs.embla.classList.remove('is-grabbing');
     },
     onSelect() {
-      const prevSlide =
-        this.embla.slideNodes()[this.embla.previousScrollSnap()];
-      const prevTitle = prevSlide.querySelector("h2");
-      const prevDescription = prevSlide.querySelector("p");
-      const currSlide =
-        this.embla.slideNodes()[this.embla.selectedScrollSnap()];
-      const currTitle = currSlide.querySelector("h2");
-      const currDescription = currSlide.querySelector("p");
+      const prevSlide = this.embla.slideNodes()[this.embla.previousScrollSnap()];
+      const prevTitle = prevSlide.querySelector('h2');
+      const prevDescription = prevSlide.querySelector('p');
+      const currSlide = this.embla.slideNodes()[this.embla.selectedScrollSnap()];
+      const currTitle = currSlide.querySelector('h2');
+      const currDescription = currSlide.querySelector('p');
       const tl = gsap.timeline();
       tl.to(
         [prevTitle, prevDescription],
@@ -130,40 +97,27 @@ export default {
           height: 0,
           opacity: 0,
           duration: 0.8,
-          ease: "power2.in",
+          ease: 'power2.in',
         },
-        0
+        0,
       );
       tl.to(
         [currTitle, currDescription],
         {
-          height: "auto",
+          height: 'auto',
           opacity: 1,
           duration: 0.8,
-          ease: "power2.out",
+          ease: 'power2.out',
         },
-        0.2
+        0.2,
       );
     },
     onSlideClick(e, index) {
-      if (this.embla.clickAllowed())
-        this.$router.push(
-          "/article/" + this.embla.slideNodes()[index].dataset.slug
-        );
+      if (this.embla.clickAllowed()) this.$router.push('/article/' + this.embla.slideNodes()[index].dataset.slug);
       else {
         e.preventDefault();
         e.stopPropagation();
       }
-    },
-  },
-
-  computed: {
-    formattedUrlImage() {
-      return (article) =>
-        article.attributes.image.data.attributes.url.replace(
-          "/uploads/",
-          process.env.API_STORAGE
-        );
     },
   },
 };
@@ -171,14 +125,13 @@ export default {
 
 <style lang="scss" scoped>
 section {
-  min-height: calc(100vh - 60px);
-  max-height: 850px;
+  margin-top: 40px;
 
   .embla {
     position: relative;
     overflow: hidden;
     height: 100%;
-    margin-top: 40px;
+
     cursor: grab;
 
     &.is-grabbing {
@@ -186,9 +139,9 @@ section {
     }
 
     .cta {
+      display: none;
       position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
+      top: 200px;
       background-color: $white;
       height: 56px;
       width: 56px;
@@ -251,9 +204,13 @@ section {
 
         img {
           width: 100%;
-          height: 500px;
+          height: 20vh;
           object-fit: cover;
           transition: transform 0.4s ease-in-out;
+
+          @include tablet {
+            height: 40vh;
+          }
         }
       }
 
