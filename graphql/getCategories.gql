@@ -4,14 +4,7 @@ query getCategories {
       id
       attributes {
         name
-        articles {
-          data {
-            attributes {
-              slug
-              title
-            }
-          }
-        }
+        slug
       }
     }
   }

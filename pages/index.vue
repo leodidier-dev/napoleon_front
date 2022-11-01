@@ -1,5 +1,6 @@
 <template>
   <section>
+    <h1 class="fs-h1">Les articles du jour</h1>
     <div ref="embla" class="embla">
       <div class="embla__container">
         <div v-for="(article, index) in articles.data" :key="index" class="embla__slide" :data-slug="article.attributes.slug">

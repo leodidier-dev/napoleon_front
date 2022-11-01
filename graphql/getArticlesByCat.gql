@@ -1,0 +1,18 @@
+query getArticlesByCat($slug: String!) {
+  articles(filters: { category: { slug: { eq: $slug } } }, sort: "title:asc") {
+    data {
+      attributes {
+        slug
+        title
+        type {
+          data {
+            attributes {
+              slug
+              name
+            }
+          }
+        }
+      }
+    }
+  }
+}
