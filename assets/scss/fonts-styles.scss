@@ -1,3 +1,43 @@
+@mixin fs-sitename {
+	@include thunder-bold;
+	font-size: 50rem;
+	line-height: 100%;
+	letter-spacing: 0.05em;
+	color: $black;
+
+	@include tablet {
+		font-size: 80rem;
+	}
+
+	@include desktop {
+		font-size: 90rem;
+	}
+}
+.fs-sitename{
+	@include fs-sitename;
+}
+
+@mixin fs-date {
+	@include thunder-light;
+	font-size: 18rem;
+	line-height: 100%;
+	letter-spacing: 0.05em;
+	color: $black;
+
+	@include tablet {
+		font-size: 24rem;
+	}
+
+	@include desktop {
+		font-size: 20rem;
+	}
+}
+.fs-date{
+	@include fs-date;
+}
+
+
+
 @mixin fs-cta {
 	@include thunder-semi-bold;
 	font-size: 18rem;
@@ -37,27 +77,6 @@
 	@include fs-intro;
 }
 
-
-
-@mixin fs-nav-title {
-	@include thunder-semi-bold;
-	font-size: 18rem;
-	line-height: 100%;
-	letter-spacing: 0.05em;
-    text-transform: uppercase;
-	color: $black;
-
-	@include tablet {
-		font-size: 24rem;
-	}
-
-	@include desktop {
-		font-size: 30rem;
-	}
-}
-.fs-nav-title{
-	@include fs-nav-title;
-}
 
 @mixin fs-h1 {
 	@include thunder-bold;

@@ -126,6 +126,7 @@ export default {
 
 <style lang="scss" scoped>
 section {
+  display: none;
   margin-top: 40px;
 
   .embla {

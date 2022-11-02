@@ -1,33 +1,39 @@
 <template>
-  <nav>
-    <nuxt-link to="/" class="fs-nav-title">Premier empire dans le Bas-Rhin</nuxt-link>
-    <ul class="menu">
-      <li class="item">
-        <nuxt-link to="/a-propos"> A propos </nuxt-link>
-      </li>
-      <li v-for="parent in parents" :key="parent.id" class="item">
-        <nuxt-link :to="`/categorie/${parent.attributes.slug}`">
-          {{ parent.attributes.name }}
-        </nuxt-link>
-      </li>
-    </ul>
-    <div ref="burgerCta" class="burger-cta" @click="toggleMbMenu">
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
+  <div class="header">
+    <div class="top">
+      <nuxt-link to="/" class="sitename fs-sitename">Les militaires du Bas-Rhin sous la Révolution et le Premier Empire</nuxt-link>
+      <h3 class="date fs-date">{{ currentDate }}</h3>
     </div>
-    <div ref="mbMenu" class="mb-menu">
-      <ul>
-        <li class="fs-li-menu-mb">
-          <nuxt-link to="/about"> A propos </nuxt-link>
+    <nav>
+      <ul class="menu">
+        <li class="item">
+          <nuxt-link to="/a-propos"> A propos </nuxt-link>
         </li>
-        <li v-for="parent in parents" :key="parent.id" class="fs-sub-li-menu-mb parent-li-mb">
-          {{ parent.attributes.name }}
+        <li v-for="parent in parents" :key="parent.id" class="item">
+          <nuxt-link :to="`/categorie/${parent.attributes.slug}`">
+            {{ parent.attributes.name }}
+          </nuxt-link>
         </li>
       </ul>
-    </div>
-  </nav>
+
+      <!-- <div ref="burgerCta" class="burger-cta" @click="toggleMbMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div> -->
+      <!-- <div ref="mbMenu" class="mb-menu">
+        <ul>
+          <li class="fs-li-menu-mb">
+            <nuxt-link to="/about"> A propos </nuxt-link>
+          </li>
+          <li v-for="parent in parents" :key="parent.id" class="fs-sub-li-menu-mb parent-li-mb">
+            {{ parent.attributes.name }}
+          </li>
+        </ul>
+      </div> -->
+    </nav>
+  </div>
 </template>
 
 <script>
@@ -52,6 +58,32 @@ export default {
     childs() {
       return (parent) => parent.articles.data;
     },
+    currentDate() {
+      const mois = [
+        'janvier',
+        'février',
+        'mars',
+        'avril',
+        'mai',
+        'juin',
+        'juillet',
+        'août',
+        'septembre',
+        'octobre',
+        'novembre',
+        'décembre',
+      ];
+
+      const today = new Date();
+      const year = today.getFullYear();
+      const dayNumber = today.getDate();
+      const month = mois[today.getMonth()];
+      const weekday = today.toLocaleDateString('fr-FR', { weekday: 'long' });
+      const capitalize = ([first, ...rest]) => first.toUpperCase() + rest.join('').toLowerCase();
+      const aujourdhui = `${capitalize(weekday)}, le ${dayNumber} ${month} ${year}`;
+
+      return aujourdhui;
+    },
   },
 
   mounted() {},
@@ -67,20 +99,50 @@ export default {
 
 <style lang="scss" scoped>
 $height: 100px;
+
+.header {
+  position: relative;
+
+  .top {
+    display: flex;
+    position: relative;
+
+    .sitename {
+      width: 100%;
+      padding: 40px 10% 60px 10%;
+      text-align: center;
+      background: $red;
+      color: $white;
+    }
+
+    .date {
+      position: absolute;
+      right: 10px;
+      bottom: 12px;
+      color: $white;
+    }
+  }
+}
+
 nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 60px;
-  padding: 0 24px;
-  box-shadow: 15px 0.5px 1px rgba($black, 1);
+  border-top: 2px solid $black;
+  border-bottom: 2px solid $black;
 
   .menu {
-    display: none;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 20px;
+    row-gap: 10px;
 
-    @include tablet {
+    @include mobile-large {
+      width: fit-content;
+      border-left: 2px solid $black;
       display: flex;
+      flex-direction: row;
       column-gap: 20px;
+      margin-left: auto;
+      padding: 20px 24px;
     }
 
     li,
@@ -88,9 +150,8 @@ nav {
       color: $black;
       display: inline;
       @include thunder-semi-bold;
-      font-size: 20rem;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
+      font-size: 26rem;
+      letter-spacing: 0.05em;
       position: relative;
     }
 
@@ -103,7 +164,7 @@ nav {
           bottom: -8px;
           width: 100%;
           height: 1px;
-          background-color: $gold;
+          background-color: $black;
           transform: scale(0);
           transition: transform 0.4s ease-out;
         }
@@ -114,95 +175,6 @@ nav {
           &:before {
             transform: scale(1);
           }
-        }
-      }
-    }
-  }
-
-  .burger-cta {
-    align-self: center;
-    cursor: pointer;
-    position: relative;
-    width: 40px;
-    height: 23px;
-    transform: rotate(0deg);
-    transition: 0.4s ease-in-out;
-
-    span {
-      display: block;
-      position: absolute;
-      height: 3px;
-      width: 100%;
-      background: $black;
-      border-radius: 9px;
-      opacity: 1;
-      left: 0;
-      transform: rotate(0deg);
-      transition: 0.4s ease-in-out;
-
-      &:nth-child(1) {
-        top: 0px;
-      }
-      &:nth-child(2),
-      &:nth-child(3) {
-        top: 10px;
-      }
-      &:nth-child(4) {
-        top: 20px;
-      }
-    }
-
-    &.open {
-      span {
-        &:nth-child(1) {
-          top: 10px;
-          width: 0;
-          left: 50%;
-        }
-        &:nth-child(2) {
-          transform: rotate(45deg);
-        }
-        &:nth-child(3) {
-          transform: rotate(-45deg);
-        }
-        &:nth-child(4) {
-          top: 10px;
-          width: 0;
-          left: 50%;
-        }
-      }
-    }
-    @include tablet {
-      display: none;
-    }
-  }
-
-  .mb-menu {
-    display: none;
-    padding: 32px 32px 68px 32px;
-    transform: translateX(100%);
-    height: calc(100vh - 62px);
-    width: 100vw;
-    position: absolute;
-    inset: 62px 0 0 0;
-    z-index: 99;
-    background-color: $white;
-    transition: transform 0.2s ease-in;
-
-    &.open {
-      transform: translateX(0);
-      transition: transform 0.4s ease-out;
-    }
-
-    ul {
-      text-align: center;
-      row-gap: 40px;
-      display: flex;
-      flex-direction: column;
-
-      .parent-li-mb {
-        ul {
-          margin-top: 10px;
         }
       }
     }
