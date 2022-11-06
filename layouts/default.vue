@@ -70,6 +70,7 @@ export default {
   // overflow-x: hidden;
 
   .introduction-overlay {
+    display: none;
     position: absolute;
     inset: 0;
     width: 100vw;

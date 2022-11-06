@@ -5,6 +5,13 @@ query getArticles {
         slug
         abstract
         title
+        category {
+          data {
+            attributes {
+              name
+            }
+          }
+        }
         image {
           data {
             attributes {

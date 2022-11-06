@@ -1,33 +1,34 @@
 <template>
   <section>
-    <h1 class="fs-h1">Les articles du jour</h1>
-    <div ref="embla" class="embla">
-      <div class="embla__container">
-        <div v-for="(article, index) in articles.data" :key="index" class="embla__slide" :data-slug="article.attributes.slug">
-          <div class="slide-content">
-            <h2 class="fs-h2">{{ article.attributes.title }}</h2>
-            <div class="picture-w">
-              <img :src="formattedUrlImage(article)" alt="" />
-            </div>
-            <p class="fs-p">
-              {{ article.attributes.abstract }}
-            </p>
-          </div>
+    <h1 class="title">Les articles du jour</h1>
+    <div class="content">
+      <nuxt-link class="side top-side" :to="`/article/${articles.data[dayArticles[1]].attributes.slug}`">
+        <div class="side-category">{{ articles.data[dayArticles[1]].attributes.category.data.attributes.name }}</div>
+        <div class="side-title">{{ articles.data[dayArticles[1]].attributes.title }}</div>
+        <div class="picture-w">
+          <img :src="formattedUrlImage(articles.data[dayArticles[1]])" alt="" />
         </div>
-      </div>
-      <button ref="prev" class="cta prev-cta">
-        <img src="~/assets/icons/arrow.svg" alt="" />
-      </button>
-      <button ref="next" class="cta next-cta">
-        <img src="~/assets/icons/arrow.svg" alt="" />
-      </button>
+      </nuxt-link>
+      <nuxt-link class="side bottom-side" :to="`/article/${articles.data[dayArticles[2]].attributes.slug}`">
+        <div class="side-category">{{ articles.data[dayArticles[2]].attributes.category.data.attributes.name }}</div>
+        <div class="side-title">{{ articles.data[dayArticles[2]].attributes.title }}</div>
+        <div class="picture-w">
+          <img :src="formattedUrlImage(articles.data[dayArticles[2]])" alt="" />
+        </div>
+      </nuxt-link>
+      <nuxt-link class="main" :to="`/article/${articles.data[dayArticles[0]].attributes.slug}`">
+        <div class="picture-w">
+          <img :src="formattedUrlImage(articles.data[dayArticles[0]])" alt="" />
+          <h2 class="article-title">{{ articles.data[dayArticles[0]].attributes.title }}</h2>
+        </div>
+      </nuxt-link>
     </div>
+    <div class="footer"></div>
   </section>
 </template>
 
 <script>
-import EmblaCarousel from 'embla-carousel';
-import { gsap } from 'gsap';
+// import { gsap } from 'gsap';
 import getArticles from '~/graphql/getArticles';
 
 export default {
@@ -48,179 +49,153 @@ export default {
   },
 
   data() {
-    return {
-      embla: null,
-    };
+    return {};
   },
 
   computed: {
     formattedUrlImage() {
       return (article) => article.attributes.image.data.attributes.url.replace('/uploads/', process.env.API_STORAGE);
     },
-  },
+    dayArticles() {
+      const msPerDay = 24 * 60 * 60 * 1000;
+      // (new Date()).getTime() gets the number of ms since 1 January 1970 00:00:00 UTC
+      // we divide by ms_per_day and floor to get the number of 24-hour cycles (this will increment each UTC day)
+      const daySinceEpoch = Math.floor(new Date('2020-05-12T23:50:21.817Z').getTime() / msPerDay);
 
-  mounted() {
-    const emblaNode = document.querySelector('.embla');
-    const options = { loop: true, speed: 8 };
+      // we mod by the length of phones to get a number in the range [0, phones.length)
+      const firstIndex = daySinceEpoch % this.articles.data.length;
+      const secondIndex = firstIndex + 1 <= this.articles.data.length ? firstIndex + 1 : firstIndex - 1;
+      const thirdIndex = firstIndex - 1 >= 0 ? firstIndex - 1 : this.articles.data.length - 1;
 
-    this.embla = EmblaCarousel(emblaNode, options);
-
-    this.embla.on('pointerDown', this.isGrabbing);
-    this.embla.on('pointerUp', this.isNotGrabbing);
-    this.embla.on('select', this.onSelect);
-
-    this.$refs.prev.addEventListener('click', this.embla.scrollPrev);
-    this.$refs.next.addEventListener('click', this.embla.scrollNext);
-
-    this.embla.slideNodes().forEach((slide, index) => {
-      slide.addEventListener('click', (e) => this.onSlideClick(e, index));
-    });
-  },
-
-  methods: {
-    isGrabbing() {
-      this.$refs.embla.classList.add('is-grabbing');
-    },
-    isNotGrabbing() {
-      this.$refs.embla.classList.remove('is-grabbing');
-    },
-    onSelect() {
-      const prevSlide = this.embla.slideNodes()[this.embla.previousScrollSnap()];
-      const prevTitle = prevSlide.querySelector('h2');
-      const prevDescription = prevSlide.querySelector('p');
-      const currSlide = this.embla.slideNodes()[this.embla.selectedScrollSnap()];
-      const currTitle = currSlide.querySelector('h2');
-      const currDescription = currSlide.querySelector('p');
-      const tl = gsap.timeline();
-      tl.to(
-        [prevTitle, prevDescription],
-        {
-          height: 0,
-          opacity: 0,
-          duration: 0.8,
-          ease: 'power2.in',
-        },
-        0,
-      );
-      tl.to(
-        [currTitle, currDescription],
-        {
-          height: 'auto',
-          opacity: 1,
-          duration: 0.8,
-          ease: 'power2.out',
-        },
-        0.2,
-      );
-    },
-    onSlideClick(e, index) {
-      if (this.embla.clickAllowed()) this.$router.push('/article/' + this.embla.slideNodes()[index].dataset.slug);
-      else {
-        e.preventDefault();
-        e.stopPropagation();
-      }
+      return [firstIndex, secondIndex, thirdIndex];
     },
   },
+
+  mounted() {},
+
+  methods: {},
 };
 </script>
 
 <style lang="scss" scoped>
 section {
-  display: none;
-  margin-top: 40px;
+  .title {
+    @include thunder-semi-bold;
+    color: $red;
+    font-size: 50rem;
+    border-bottom: solid 1px $black;
+    padding: 20px 0;
+    text-align: center;
+  }
 
-  .embla {
-    position: relative;
-    overflow: hidden;
-    height: 100%;
+  .content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    min-height: 100vh;
 
-    cursor: grab;
-
-    &.is-grabbing {
-      cursor: grabbing;
-    }
-
-    .cta {
-      display: none;
-      position: absolute;
-      top: 200px;
-      background-color: $white;
-      height: 56px;
-      width: 56px;
+    .top-side {
+      grid-area: 1 / 1 / 2 / 2;
       border: 1px solid $black;
-
-      &.prev-cta {
-        left: 40px;
-
-        img {
-          transform: rotate(-90deg);
-        }
-      }
-
-      &.next-cta {
-        right: 40px;
-
-        img {
-          transform: rotate(90deg);
-        }
-      }
-    }
-  }
-  .embla__container {
-    display: flex;
-    height: 100%;
-  }
-  .embla__slide {
-    cursor: pointer;
-    height: 100%;
-    flex: 0 0 80%;
-    padding-left: 20px;
-
-    &:not(:first-of-type) {
-      h2 {
-        height: 0;
-        opacity: 0;
-      }
     }
 
-    &:not(:first-of-type) {
-      p {
-        height: 0;
-        opacity: 0;
-      }
+    .bottom-side {
+      grid-area: 2 / 1 / 3 / 2;
+      border: 1px solid $black;
     }
 
-    &:hover {
-      img {
-        transform: scale(1.04);
-      }
-    }
-
-    .slide-content {
+    .side {
       padding: 20px;
-      border: 1px solid $black;
-      box-shadow: 2px 2px 20px rgba($black, 0.5);
+
+      .side-category {
+        @include thunder-semi-bold;
+        color: $blue;
+        font-size: 20rem;
+      }
+
+      .side-title {
+        @include thunder-semi-bold;
+        color: $black;
+        font-size: 50rem;
+      }
 
       .picture-w {
-        overflow: hidden;
+        position: relative;
+        height: 70%;
+        width: 100%;
+
+        &:before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba($black, 0.1);
+          z-index: 1;
+        }
 
         img {
+          position: relative;
           width: 100%;
-          height: 20vh;
+          height: 100%;
           object-fit: cover;
-          transition: transform 0.4s ease-in-out;
-
-          @include tablet {
-            height: 40vh;
-          }
         }
       }
+    }
 
-      p {
-        margin-top: 40px;
-        overflow: hidden;
+    .main {
+      grid-area: 1 / 2 / 3 / 4;
+      border: 1px solid $black;
+      padding: 20px;
+
+      .picture-w {
+        position: relative;
+        height: 80%;
+        width: 100%;
+        background: $black;
+
+        &:before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba($black, 0.1);
+          z-index: 1;
+        }
+
+        .article-title {
+          position: absolute;
+          top: 40px;
+          left: 50%;
+          transform: translateX(-50%);
+          @include thunder-bold;
+          color: $white;
+          font-size: 90rem;
+          z-index: 2;
+          text-align: center;
+        }
+
+        img {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
       }
     }
+  }
+
+  .footer {
+    width: 100%;
+    height: 200px;
+    border: 1px solid $black;
+  }
+
+  .embla {
+    display: none;
   }
 }
 </style>
