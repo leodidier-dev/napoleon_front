@@ -64,8 +64,7 @@ export default {
 #article-content {
   position: relative;
   color: $black;
-  width: 80%;
-  max-width: 1600px;
+  width: 90%;
   margin-left: auto;
   margin-right: auto;
   margin-top: 50px;

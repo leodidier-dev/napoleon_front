@@ -125,29 +125,27 @@ $height: 100px;
 }
 
 nav {
-  border-top: 2px solid $black;
-  border-bottom: 2px solid $black;
-
   .menu {
+    border-top: 2px solid $white;
     display: flex;
     flex-direction: column;
     align-items: start;
     padding: 20px;
     row-gap: 10px;
+    background-color: $black;
 
     @include mobile-large {
       width: fit-content;
-      border-left: 2px solid $black;
       display: flex;
       flex-direction: row;
-      column-gap: 20px;
+      column-gap: 40px;
       margin-left: auto;
       padding: 20px 24px;
     }
 
     li,
     a {
-      color: $black;
+      color: $white;
       display: inline;
       @include thunder-semi-bold;
       font-size: 26rem;
@@ -164,7 +162,7 @@ nav {
           bottom: -8px;
           width: 100%;
           height: 1px;
-          background-color: $black;
+          background-color: $white;
           transform: scale(0);
           transition: transform 0.4s ease-out;
         }
