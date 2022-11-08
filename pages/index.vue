@@ -108,7 +108,6 @@ export default {
 
 <style lang="scss" scoped>
 section {
-  margin-top: 20px;
   .title {
     @include thunder-semi-bold;
     color: $black;
@@ -116,6 +115,7 @@ section {
     padding: 50px 0;
     text-transform: uppercase;
     text-align: center;
+    border-top: 4px solid $black;
   }
 
   .content {
@@ -124,14 +124,14 @@ section {
       grid-template-columns: repeat(3, 1fr);
       grid-template-rows: 1fr 1fr 400px;
       grid-column-gap: 0px;
-      grid-row-gap: 40px;
+      grid-row-gap: 60px;
     }
 
     .main {
       padding-left: 40px;
       align-self: start;
       height: 100%;
-      border-left: 1px solid $black;
+      border-left: 2px solid $black;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -201,7 +201,7 @@ section {
         @include thunder-semi-bold;
         color: $blue;
         font-size: 22rem;
-        border-bottom: 1px solid $black;
+        border-bottom: 2px solid $black;
         padding-bottom: 8px;
         text-transform: uppercase;
       }
@@ -255,7 +255,7 @@ section {
     }
 
     .bottom {
-      border-top: 1px solid $black;
+      border-top: 2px solid $black;
       padding: 20px;
 
       .side-category {

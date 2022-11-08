@@ -132,7 +132,7 @@ nav {
     align-items: start;
     padding: 20px;
     row-gap: 10px;
-    background-color: $black;
+    // background-color: $black;
 
     @include mobile-large {
       width: fit-content;
@@ -145,12 +145,13 @@ nav {
 
     li,
     a {
-      color: $white;
+      color: $black;
       display: inline;
       @include thunder-semi-bold;
       font-size: 26rem;
       letter-spacing: 0.05em;
       position: relative;
+      text-transform: uppercase;
     }
 
     .item {
@@ -161,8 +162,8 @@ nav {
           z-index: 3;
           bottom: -8px;
           width: 100%;
-          height: 1px;
-          background-color: $white;
+          height: 2px;
+          background-color: $black;
           transform: scale(0);
           transition: transform 0.4s ease-out;
         }
