@@ -27,6 +27,13 @@ $desktop: 1440px;
     }
 }
 
+@mixin hover {
+    @media (hover: hover) and (pointer: fine) {
+        &:hover {
+        @content;}
+    }
+}
+
 html {
     font-size: 1px;
 

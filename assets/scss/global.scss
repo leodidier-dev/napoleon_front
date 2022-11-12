@@ -11,7 +11,7 @@
   }
 
   html {
-    background-color: black;
+    background-color: $black;
   }
   
   body {
@@ -22,7 +22,6 @@
     background-color: $white;
     max-width: 1920px;
     min-height: 100vh;
-    padding: 40px;
   }
   
   p {
@@ -76,3 +75,59 @@
     padding: 0px;
     margin: 0px;
   }
+
+
+.page-enter-active,
+.page-leave-active {
+  transition-duration: 0.85s;
+  &:before, &:after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 999;
+    width: 100%;
+    min-height: 100vh;
+    height: 100%;
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  }
+
+  &:before {
+    background-color: $red;
+    transition-duration: 0.85s;
+  }
+
+  &:after {
+    z-index: 1;
+    background-color: $white;
+    transition-duration: 0.7s;
+    transition-delay: 0.15s;
+  }
+  
+}
+
+.page-leave {
+  &:before, &:after {
+    transform: scaleX(0);
+  }
+}
+
+.page-leave-to {
+  &:before, &:after {
+    transform: scaleX(1);
+    transform-origin: right;
+  }
+}
+
+.page-enter {
+  &:before, &:after {
+    transform: scaleX(1);
+  }
+}
+
+.page-enter-to {
+  &:before, &:after {
+    transform: scaleX(0);
+    transform-origin: right;
+  }
+}

@@ -1,12 +1,12 @@
 <template>
-  <div id="article-content" ref="articleW">
+  <section id="article-content" ref="articleW" class="page">
     <h2 class="fs-article-category">{{ category }}</h2>
     <h1 class="fs-article-title">{{ title }}</h1>
     <button @click="scrollTop">
       <img src="~/assets/icons/up-arrow.svg" alt="" />
       <span class="fs-caption">Retour en haut</span>
     </button>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -62,7 +62,6 @@ export default {
 
 <style lang="scss">
 #article-content {
-  position: relative;
   color: $black;
   width: 90%;
   margin-left: auto;

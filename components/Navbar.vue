@@ -9,7 +9,7 @@
         <li class="item">
           <nuxt-link to="/a-propos"> A propos </nuxt-link>
         </li>
-        <li v-for="parent in parents" :key="parent.id" class="item">
+        <li v-for="parent in parents" :key="parent.id" class="item" data-cursor>
           <nuxt-link :to="`/categorie/${parent.attributes.slug}`">
             {{ parent.attributes.name }}
           </nuxt-link>
@@ -129,10 +129,12 @@ nav {
     border-top: 2px solid $white;
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: center;
     padding: 20px;
     row-gap: 10px;
-    // background-color: $black;
+    align-items: center;
+    text-align: center;
+    border-bottom: 2px solid $black;
 
     @include mobile-large {
       width: fit-content;
@@ -152,6 +154,11 @@ nav {
       letter-spacing: 0.05em;
       position: relative;
       text-transform: uppercase;
+      max-width: 250px;
+
+      @include tablet {
+        max-width: none;
+      }
     }
 
     .item {
@@ -169,7 +176,7 @@ nav {
         }
       }
 
-      &:hover {
+      @include hover {
         a {
           &:before {
             transform: scale(1);

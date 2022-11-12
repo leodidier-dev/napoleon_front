@@ -6,10 +6,6 @@
 	color: $black;
 
 	@include tablet {
-		font-size: 80rem;
-	}
-
-	@include desktop {
 		font-size: 90rem;
 	}
 }

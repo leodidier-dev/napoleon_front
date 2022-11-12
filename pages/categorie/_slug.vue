@@ -1,5 +1,5 @@
 <template>
-  <div id="category">
+  <section id="category" class="page">
     <h1 class="fs-article-category">Catégorie</h1>
     <div class="types">
       <button
@@ -18,7 +18,7 @@
         <nuxt-link :to="`/article/${article.attributes.slug}`">{{ article.attributes.title }}</nuxt-link>
       </li>
     </ul>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -80,7 +80,6 @@ export default {
 
 <style lang="scss">
 #category {
-  position: relative;
   color: $black;
   width: 80%;
   max-width: 1600px;
@@ -124,7 +123,7 @@ export default {
         transition: transform 0.4s ease-out;
       }
 
-      &:hover {
+      @include hover {
         &:before {
           transform: scale(1);
         }

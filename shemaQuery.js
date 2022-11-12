@@ -1,5 +1,5 @@
-const fetch = require('node-fetch');
 const fs = require('fs');
+const fetch = require('node-fetch');
 
 fetch("http://localhost:1337/graphql", {
   method: 'POST',

@@ -1,5 +1,6 @@
 <template>
   <div id="layout">
+    <CustomCursor />
     <div ref="overlay" class="introduction-overlay">
       <div class="overlay-content">
         <p class="fs-intro">
@@ -18,8 +19,10 @@
 <script>
 import Lenis from '@studio-freight/lenis';
 import { gsap } from 'gsap';
+import CustomCursor from '../components/CustomCursor.vue';
 export default {
   name: 'DefaultLayout',
+  components: { CustomCursor },
   data() {
     return {
       lenis: null,

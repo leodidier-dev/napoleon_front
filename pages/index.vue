@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="page">
     <h1 class="title">A la une aujourd'hui,</h1>
     <div class="content">
       <nuxt-link class="main" :to="`/article/${dayArticles[0].attributes.slug}`">
@@ -98,9 +98,7 @@ export default {
     },
   },
 
-  mounted() {
-    console.log(this.dayArticles);
-  },
+  mounted() {},
 
   methods: {},
 };
@@ -108,43 +106,60 @@ export default {
 
 <style lang="scss" scoped>
 section {
+  padding: 20px;
+
   .title {
     @include thunder-semi-bold;
     color: $black;
-    font-size: 160rem;
-    padding: 50px 0;
+    font-size: 60rem;
+    padding: 40px 0;
     text-transform: uppercase;
     text-align: center;
-    border-top: 4px solid $black;
+
+    @include tablet {
+      font-size: 160rem;
+      padding: 50px 0;
+    }
   }
 
   .content {
     @include tablet {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: 1fr 1fr 400px;
+      grid-template-rows: 1fr 1fr 250px;
       grid-column-gap: 0px;
-      grid-row-gap: 60px;
+      grid-row-gap: 30px;
+    }
+
+    @include desktop {
+      grid-template-rows: 1fr 1fr 300px;
     }
 
     .main {
-      padding-left: 40px;
       align-self: start;
       height: 100%;
-      border-left: 2px solid $black;
       display: flex;
       flex-direction: column;
       justify-content: center;
 
       @include tablet {
+        padding-left: 40px;
+        border-left: 2px solid $black;
         grid-area: 1 / 2 / 3 / 4;
+      }
+
+      @include hover {
+        img {
+          transform: scale(1.04);
+        }
       }
 
       .picture-w {
         position: relative;
-        height: 70%;
+        height: 80%;
         width: 100%;
         background: $black;
+        overflow: hidden;
 
         &:before {
           content: '';
@@ -152,21 +167,24 @@ section {
           inset: 0;
           width: 100%;
           height: 100%;
-
-          //background: rgba($black, 0.4);
           z-index: 1;
         }
 
         .article-title {
           position: absolute;
-          top: 40px;
+          top: 20px;
           left: 50%;
           transform: translateX(-50%);
           @include thunder-bold;
           color: $white;
-          font-size: 120rem;
+          font-size: 50rem;
           z-index: 2;
           text-align: center;
+
+          @include tablet {
+            top: 40px;
+            font-size: 120rem;
+          }
         }
 
         img {
@@ -174,6 +192,7 @@ section {
           width: 100%;
           height: 100%;
           object-fit: cover;
+          transition: transform 0.5s ease-in-out;
         }
       }
 
@@ -181,42 +200,63 @@ section {
         margin-top: 40px;
         @include thunder-light;
         color: $black;
-        font-size: 28rem;
+        font-size: 24rem;
         text-align: justify;
+        letter-spacing: 0.03em;
       }
     }
 
     .top-side {
-      grid-area: 1 / 1 / 2 / 2;
+      margin-top: 50px;
+
+      @include tablet {
+        margin: 0;
+        grid-area: 1 / 1 / 2 / 2;
+      }
     }
 
     .bottom-side {
-      grid-area: 2 / 1 / 3 / 2;
+      margin-top: 20px;
+
+      @include tablet {
+        margin: 0;
+        grid-area: 2 / 1 / 3 / 2;
+      }
     }
 
     .side {
-      padding-right: 40px;
+      @include tablet {
+        padding-right: 40px;
+      }
 
       .side-category {
         @include thunder-semi-bold;
         color: $blue;
-        font-size: 22rem;
+        font-size: 20rem;
         border-bottom: 2px solid $black;
         padding-bottom: 8px;
         text-transform: uppercase;
+
+        @include tablet {
+          font-size: 22rem;
+        }
       }
 
       .side-title {
         @include thunder-semi-bold;
         color: $black;
-        font-size: 70rem;
+        font-size: 40rem;
         margin-top: 16px;
+
+        @include tablet {
+          font-size: 70rem;
+        }
       }
 
       .picture-w {
         margin-top: 16px;
         position: relative;
-        height: 60%;
+        height: 40%;
         width: 100%;
 
         &:before {
@@ -241,31 +281,49 @@ section {
         margin-top: 30px;
         @include thunder-light;
         color: $black;
-        font-size: 24rem;
+        font-size: 22rem;
         text-align: justify;
+        letter-spacing: 0.03em;
       }
     }
 
     .left-bottom {
-      grid-area: 3 / 2 / 4 / 3;
+      margin-top: 50px;
+
+      @include tablet {
+        margin: 0;
+        grid-area: 3 / 2 / 4 / 3;
+      }
     }
 
     .right-bottom {
-      grid-area: 3 / 3 / 4 / 4;
+      margin-top: 30px;
+
+      @include tablet {
+        margin: 0;
+        grid-area: 3 / 3 / 4 / 4;
+      }
     }
 
     .bottom {
       border-top: 2px solid $black;
-      padding: 20px;
+
+      @include tablet {
+        padding: 20px;
+      }
 
       .side-category {
         @include thunder-semi-bold;
         color: $white;
-        font-size: 22rem;
+        font-size: 20rem;
         padding: 8px 0;
         background-color: $blue;
         text-transform: uppercase;
         text-align: center;
+
+        @include tablet {
+          font-size: 22rem;
+        }
       }
 
       .bottom-content {
@@ -284,10 +342,15 @@ section {
 
           .abstract {
             @include thunder-light;
+            letter-spacing: 0.03em;
             color: $black;
             font-size: 20rem;
             margin-top: 8px;
             text-align: justify;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 7;
+            overflow: hidden;
           }
         }
 
@@ -317,9 +380,14 @@ section {
     }
   }
   .footer {
+    margin-top: 40px;
     border-top: 10px solid $black;
     height: 100px;
     width: 100%;
+
+    @include tablet {
+      margin-top: 0;
+    }
   }
 }
 </style>
