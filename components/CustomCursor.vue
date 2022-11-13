@@ -47,8 +47,7 @@ export default {
 
   methods: {
     onEnter() {
-      const tl = gsap.timeline();
-      tl.to(this.svg, { scale: '4', repeat: -1, duration: 0.4 });
+      this.svg.style.transform = 'scale(0)';
     },
 
     onLeave() {
@@ -71,6 +70,34 @@ export default {
   svg {
     width: 100%;
     height: auto;
+
+    #right-wing {
+      animation: 0.1s linear infinite alternate rightWing;
+      transform-origin: 50%;
+
+      @keyframes rightWing {
+        from {
+          transform: rotate(20deg);
+        }
+        to {
+          transform: rotate(-90deg);
+        }
+      }
+    }
+
+    #left-wing {
+      animation: 0.1s linear infinite alternate leftWing;
+      transform-origin: 50%;
+
+      @keyframes leftWing {
+        from {
+          transform: rotate(-20deg);
+        }
+        to {
+          transform: rotate(90deg);
+        }
+      }
+    }
   }
 }
 </style>

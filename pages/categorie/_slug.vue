@@ -87,6 +87,7 @@ export default {
   margin-right: auto;
   margin-top: 50px;
   padding-bottom: 200px;
+  min-height: 100vh;
 
   .types {
     margin-top: 10px;

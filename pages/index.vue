@@ -1,7 +1,7 @@
 <template>
   <section class="page">
     <h1 class="title">A la une aujourd'hui,</h1>
-    <div class="content">
+    <div class="content" data-cursor>
       <nuxt-link class="main" :to="`/article/${dayArticles[0].attributes.slug}`">
         <div class="picture-w">
           <img :src="formattedUrlImage(dayArticles[0])" alt="" />
@@ -160,6 +160,7 @@ section {
         width: 100%;
         background: $black;
         overflow: hidden;
+        border-radius: 6px;
 
         &:before {
           content: '';
@@ -203,6 +204,11 @@ section {
         font-size: 24rem;
         text-align: justify;
         letter-spacing: 0.03em;
+
+        &::first-letter {
+          font-size: 150%;
+          font-weight: 800;
+        }
       }
     }
 
@@ -284,6 +290,11 @@ section {
         font-size: 22rem;
         text-align: justify;
         letter-spacing: 0.03em;
+
+        &::first-letter {
+          font-size: 150%;
+          font-weight: 800;
+        }
       }
     }
 
@@ -351,6 +362,11 @@ section {
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 7;
             overflow: hidden;
+
+            &::first-letter {
+              font-size: 150%;
+              font-weight: 800;
+            }
           }
         }
 
