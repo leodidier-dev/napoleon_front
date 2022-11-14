@@ -59,10 +59,9 @@ export default {
 
 <style lang="scss">
 #cursor {
-  width: 25px;
+  width: 18px;
   z-index: 1000;
-  height: 25px;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   pointer-events: none;

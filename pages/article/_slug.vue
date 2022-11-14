@@ -85,16 +85,27 @@ export default {
   }
 
   .content {
-    margin-top: 30px;
-
     @include tablet {
       columns: 2;
       column-gap: 80px;
+      margin-top: 16px;
+    }
+
+    @include desktop {
+      margin-top: 32px;
     }
 
     h1 {
       @include fs-h1;
-      margin-top: 40px;
+      margin-top: 32px;
+    }
+
+    h2 {
+      @include fs-h2;
+    }
+
+    h3 {
+      @include fs-h3;
     }
 
     p {
@@ -111,9 +122,21 @@ export default {
       }
     }
 
+    ol,
+    ul {
+      @include fs-p;
+      > li::marker {
+        font-weight: bold;
+      }
+    }
+    blockquote {
+      margin: 0;
+      font-style: italic;
+    }
+
     figure.image {
-      margin-top: 32px;
       // max-width: 800px;
+      margin-top: 32px;
       margin-left: auto;
       margin-right: auto;
 
@@ -123,14 +146,14 @@ export default {
 
       figcaption {
         @include fs-caption;
-        margin-top: 16px;
+        margin-top: 8px;
         text-align: right;
       }
     }
 
     figure.table {
-      margin-top: 32px;
       width: 100%;
+      margin-top: 32px;
       margin-left: auto;
       margin-right: auto;
 

@@ -1,31 +1,33 @@
 <template>
   <section class="page">
     <h1 class="title">A la une aujourd'hui,</h1>
-    <div class="content" data-cursor>
-      <nuxt-link class="main" :to="`/article/${dayArticles[0].attributes.slug}`">
+    <div class="content">
+      <nuxt-link class="article main" :to="`/article/${dayArticles[0].attributes.slug}`">
         <div class="picture-w">
           <img :src="formattedUrlImage(dayArticles[0])" alt="" />
           <h2 class="article-title">{{ dayArticles[0].attributes.title }}</h2>
         </div>
         <p class="abstract">{{ dayArticles[0].attributes.abstract }}</p>
       </nuxt-link>
-      <nuxt-link class="side top-side" :to="`/article/${dayArticles[1].attributes.slug}`">
+      <nuxt-link class="article side top-side" :to="`/article/${dayArticles[1].attributes.slug}`">
         <div class="side-category">{{ dayArticles[1].attributes.category.data.attributes.name }}</div>
+        <hr />
         <div class="side-title">{{ dayArticles[1].attributes.title }}</div>
         <div class="picture-w">
           <img :src="formattedUrlImage(dayArticles[1])" alt="" />
         </div>
         <p class="abstract">{{ dayArticles[1].attributes.abstract }}</p>
       </nuxt-link>
-      <nuxt-link class="side bottom-side" :to="`/article/${dayArticles[2].attributes.slug}`">
+      <nuxt-link class="article side bottom-side" :to="`/article/${dayArticles[2].attributes.slug}`">
         <div class="side-category">{{ dayArticles[2].attributes.category.data.attributes.name }}</div>
+        <hr />
         <div class="side-title">{{ dayArticles[2].attributes.title }}</div>
         <div class="picture-w">
           <img :src="formattedUrlImage(dayArticles[2])" alt="" />
         </div>
         <p class="abstract">{{ dayArticles[2].attributes.abstract }}</p>
       </nuxt-link>
-      <nuxt-link class="bottom left-bottom" :to="`/article/${dayArticles[3].attributes.slug}`">
+      <nuxt-link class="article bottom left-bottom" :to="`/article/${dayArticles[3].attributes.slug}`">
         <div class="side-category">{{ dayArticles[3].attributes.category.data.attributes.name }}</div>
         <div class="bottom-content">
           <div class="bottom-txt">
@@ -37,7 +39,7 @@
           </div>
         </div>
       </nuxt-link>
-      <nuxt-link class="bottom right-bottom" :to="`/article/${dayArticles[4].attributes.slug}`">
+      <nuxt-link class="article bottom right-bottom" :to="`/article/${dayArticles[4].attributes.slug}`">
         <div class="side-category">{{ dayArticles[4].attributes.category.data.attributes.name }}</div>
         <div class="bottom-content">
           <div class="bottom-txt">
@@ -135,6 +137,28 @@ section {
       grid-template-rows: 1fr 1fr 300px;
     }
 
+    .picture-w {
+      border-radius: 4px;
+      overflow: hidden;
+
+      img {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.8s ease-in-out, filter 0.6s ease-in-out;
+      }
+    }
+
+    .article {
+      @include hover {
+        img {
+          transform: scale(1.09);
+          filter: grayscale(80%);
+        }
+      }
+    }
+
     .main {
       align-self: start;
       height: 100%;
@@ -148,19 +172,10 @@ section {
         grid-area: 1 / 2 / 3 / 4;
       }
 
-      @include hover {
-        img {
-          transform: scale(1.04);
-        }
-      }
-
       .picture-w {
         position: relative;
         height: 80%;
         width: 100%;
-        background: $black;
-        overflow: hidden;
-        border-radius: 6px;
 
         &:before {
           content: '';
@@ -186,14 +201,6 @@ section {
             top: 40px;
             font-size: 120rem;
           }
-        }
-
-        img {
-          position: relative;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: transform 0.5s ease-in-out;
         }
       }
 
@@ -239,7 +246,6 @@ section {
         @include thunder-semi-bold;
         color: $blue;
         font-size: 20rem;
-        border-bottom: 2px solid $black;
         padding-bottom: 8px;
         text-transform: uppercase;
 
@@ -273,13 +279,6 @@ section {
           height: 100%;
           background: rgba($black, 0.1);
           z-index: 1;
-        }
-
-        img {
-          position: relative;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
         }
       }
 
@@ -383,13 +382,6 @@ section {
             height: 100%;
             background: rgba($black, 0.1);
             z-index: 1;
-          }
-
-          img {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
           }
         }
       }

@@ -90,9 +90,10 @@ export default {
   min-height: 100vh;
 
   .types {
-    margin-top: 10px;
+    margin-top: 16px;
     display: flex;
     column-gap: 40px;
+    flex-wrap: wrap;
 
     .type {
       font-size: 80rem;
