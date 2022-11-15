@@ -1,6 +1,6 @@
 <template>
   <div id="layout">
-    <CustomCursor />
+    <custom-cursor />
     <div ref="overlay" class="introduction-overlay">
       <div class="overlay-content">
         <p class="fs-intro">
@@ -11,7 +11,7 @@
         <button class="fs-cta" @click="enter">Entrer</button>
       </div>
     </div>
-    <Navbar />
+    <navbar />
     <nuxt />
   </div>
 </template>
@@ -69,7 +69,7 @@ export default {
 
 <style lang="scss" scoped>
 #layout {
-  position: relative;
+  //position: relative;
   // overflow-x: hidden;
 
   .introduction-overlay {

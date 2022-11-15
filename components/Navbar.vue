@@ -15,23 +15,6 @@
           </nuxt-link>
         </li>
       </ul>
-
-      <!-- <div ref="burgerCta" class="burger-cta" @click="toggleMbMenu">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div> -->
-      <!-- <div ref="mbMenu" class="mb-menu">
-        <ul>
-          <li class="fs-li-menu-mb">
-            <nuxt-link to="/about"> A propos </nuxt-link>
-          </li>
-          <li v-for="parent in parents" :key="parent.id" class="fs-sub-li-menu-mb parent-li-mb">
-            {{ parent.attributes.name }}
-          </li>
-        </ul>
-      </div> -->
     </nav>
   </div>
 </template>
@@ -109,10 +92,11 @@ $height: 100px;
 
     .sitename {
       width: 100%;
-      padding: 40px 10% 60px 10%;
+      padding: 60px 10%;
       text-align: center;
       background: $red;
       color: $white;
+      text-transform: uppercase;
     }
 
     .date {
@@ -137,12 +121,19 @@ nav {
     border-bottom: 2px solid $black;
 
     @include mobile-large {
-      width: fit-content;
+      width: 100%;
       display: flex;
+      justify-content: space-between;
       flex-direction: row;
-      column-gap: 40px;
       margin-left: auto;
+      padding: 16px 44px;
+    }
+
+    @include tablet {
       padding: 20px 24px;
+      width: fit-content;
+      column-gap: 40px;
+      justify-content: start;
     }
 
     li,
@@ -158,6 +149,7 @@ nav {
 
       @include tablet {
         max-width: none;
+        font-size: 28rem;
       }
     }
 

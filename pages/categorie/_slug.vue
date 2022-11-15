@@ -1,6 +1,6 @@
 <template>
   <section id="category" class="page">
-    <h1 class="fs-article-category">Catégorie</h1>
+    <h1 v-if="articles.data.length > 0" class="fs-article-category">{{ category }}</h1>
     <div class="types">
       <button
         v-for="(type, index) in types"
@@ -13,9 +13,9 @@
         {{ type }}
       </button>
     </div>
-    <ul>
-      <li v-for="article in filteredArticles" :key="article.id" class="fs-cta black">
-        <nuxt-link :to="`/article/${article.attributes.slug}`">{{ article.attributes.title }}</nuxt-link>
+    <ul v-if="articles">
+      <li v-for="article in filteredArticles" :key="article.attributes.slug" class="fs-cta black">
+        <nuxt-link :to="`/article/${article.attributes.slug}`" data-cursor>{{ article.attributes.title }}</nuxt-link>
       </li>
     </ul>
   </section>
@@ -49,6 +49,9 @@ export default {
   },
 
   computed: {
+    category() {
+      return this.articles.data[0].attributes.category.data.attributes.name;
+    },
     types() {
       const types = this.articles.data.map((el) => {
         return el.attributes.type.data.attributes.name;
@@ -97,14 +100,26 @@ export default {
 
     .type {
       font-size: 80rem;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+
       &:not(.selected-type) {
         opacity: 0.4;
+      }
+
+      @include hover {
+        opacity: 0.4;
+        transform: translate(2px, 2px);
+
+        &:not(.selected-type) {
+          opacity: 1;
+        }
       }
     }
   }
 
   ul {
     margin-top: 30px;
+    padding: 0;
 
     li {
       font-size: 36rem;

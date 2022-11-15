@@ -18,31 +18,36 @@ export default {
       svg: null,
     };
   },
+
+  watch: {
+    $route() {
+      // setTimeout(() => {
+      //   this.routeLoaded();
+      // }, 2);
+    },
+  },
   mounted() {
     this.svg = this.$refs.cursor.querySelector('svg');
-    gsap.set(this.$refs.cursor, { xPercent: -80, yPercent: -80 });
+    gsap.set(this.$refs.cursor, { xPercent: -50, yPercent: -50 });
 
     const xTo = gsap.quickTo(this.$refs.cursor, 'x', { duration: 0.7, ease: 'sine' });
     const yTo = gsap.quickTo(this.$refs.cursor, 'y', { duration: 0.7, ease: 'sine' });
     const rotateTo = gsap.quickTo(this.$refs.cursor, 'rotation', { duration: 0.4, ease: 'sine' });
 
     window.addEventListener('mousemove', (e) => {
-      xTo(e.pageX);
-      yTo(e.pageY);
+      xTo(e.clientX);
+      yTo(e.clientY);
 
-      if (this.lastX < e.pageX && this.lastY < e.pageY) rotateTo(135); // droite bas
-      else if (this.lastX < e.pageX && this.lastY > e.pageY) rotateTo(45); // droite haut
-      else if (this.lastX > e.pageX && this.lastY < e.pageY) rotateTo(225); // gauche bas
-      else if (this.lastX > e.pageX && this.lastY > e.pageY) rotateTo(315); // gauche haut
+      if (this.lastX < e.clientX && this.lastY < e.clientY) rotateTo(135); // droite bas
+      else if (this.lastX < e.clientX && this.lastY > e.clientY) rotateTo(45); // droite haut
+      else if (this.lastX > e.clientX && this.lastY < e.clientY) rotateTo(225); // gauche bas
+      else if (this.lastX > e.clientX && this.lastY > e.clientY) rotateTo(315); // gauche haut
 
-      this.lastX = e.pageX;
-      this.lastY = e.pageY;
+      this.lastX = e.clientX;
+      this.lastY = e.clientY;
     });
 
-    this.triggers = [...document.querySelectorAll('[data-cursor]')];
-
-    this.triggers.forEach((trigger) => trigger.addEventListener('mouseenter', this.onEnter));
-    this.triggers.forEach((trigger) => trigger.addEventListener('mouseleave', this.onLeave));
+    this.$router.onReady(() => this.routeLoaded());
   },
 
   methods: {
@@ -52,6 +57,13 @@ export default {
 
     onLeave() {
       this.svg.style.transform = 'scale(1)';
+    },
+
+    routeLoaded() {
+      this.triggers = [...document.querySelectorAll('[data-cursor]')];
+      this.triggers.forEach((trigger) => trigger.addEventListener('mouseenter', this.onEnter));
+      this.triggers.forEach((trigger) => trigger.addEventListener('mouseleave', this.onLeave));
+      console.log(this.triggers);
     },
   },
 };

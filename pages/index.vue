@@ -2,7 +2,7 @@
   <section class="page">
     <h1 class="title">A la une aujourd'hui,</h1>
     <div class="content">
-      <nuxt-link class="article main" :to="`/article/${dayArticles[0].attributes.slug}`">
+      <nuxt-link class="article main" :to="`/article/${dayArticles[0].attributes.slug}`" data-cursor>
         <div class="picture-w">
           <img :src="formattedUrlImage(dayArticles[0])" alt="" />
           <h2 class="article-title">{{ dayArticles[0].attributes.title }}</h2>
@@ -118,8 +118,16 @@ section {
     text-transform: uppercase;
     text-align: center;
 
+    @include mobile-large {
+      font-size: 90rem;
+    }
+
     @include tablet {
-      font-size: 160rem;
+      font-size: 140rem;
+      padding: 30px 0;
+    }
+
+    @include desktop {
       padding: 50px 0;
     }
   }
@@ -154,7 +162,6 @@ section {
       @include hover {
         img {
           transform: scale(1.09);
-          filter: grayscale(80%);
         }
       }
     }
@@ -193,13 +200,20 @@ section {
           transform: translateX(-50%);
           @include thunder-bold;
           color: $white;
-          font-size: 50rem;
+          font-size: 40rem;
           z-index: 2;
           text-align: center;
+          text-transform: uppercase;
+          width: 90%;
+
+          @include mobile-large {
+            width: 80%;
+            font-size: 60rem;
+          }
 
           @include tablet {
             top: 40px;
-            font-size: 120rem;
+            font-size: 100rem;
           }
         }
       }
@@ -211,6 +225,10 @@ section {
         font-size: 24rem;
         text-align: justify;
         letter-spacing: 0.03em;
+
+        @include tablet {
+          font-size: 28rem;
+        }
 
         &::first-letter {
           font-size: 150%;
@@ -249,8 +267,12 @@ section {
         padding-bottom: 8px;
         text-transform: uppercase;
 
-        @include tablet {
+        @include mobile-large {
           font-size: 22rem;
+        }
+
+        @include tablet {
+          font-size: 24rem;
         }
       }
 
@@ -259,6 +281,11 @@ section {
         color: $black;
         font-size: 40rem;
         margin-top: 16px;
+        text-transform: uppercase;
+
+        @include mobile-large {
+          font-size: 60rem;
+        }
 
         @include tablet {
           font-size: 70rem;
@@ -289,6 +316,10 @@ section {
         font-size: 22rem;
         text-align: justify;
         letter-spacing: 0.03em;
+
+        @include tablet {
+          font-size: 24rem;
+        }
 
         &::first-letter {
           font-size: 150%;
@@ -331,23 +362,38 @@ section {
         text-transform: uppercase;
         text-align: center;
 
-        @include tablet {
+        @include mobile-large {
           font-size: 22rem;
         }
       }
 
       .bottom-content {
         display: flex;
-        column-gap: 15px;
+        flex-direction: column-reverse;
+        row-gap: 16px;
         margin-top: 16px;
 
+        @include tablet {
+          flex-direction: row;
+          column-gap: 15px;
+        }
+
         .bottom-txt {
-          width: 50%;
+          width: 100%;
+
+          @include tablet {
+            width: 50%;
+          }
 
           .bottom-title {
             @include thunder-semi-bold;
             color: $black;
-            font-size: 22rem;
+            font-size: 28rem;
+            text-transform: uppercase;
+
+            @include mobile-large {
+              font-size: 34rem;
+            }
           }
 
           .abstract {
@@ -362,6 +408,10 @@ section {
             -webkit-line-clamp: 7;
             overflow: hidden;
 
+            @include tablet {
+              font-size: 22rem;
+            }
+
             &::first-letter {
               font-size: 150%;
               font-weight: 800;
@@ -372,7 +422,12 @@ section {
         .picture-w {
           position: relative;
           height: 100%;
-          width: 50%;
+
+          @include tablet {
+            height: unset;
+            width: 50%;
+            align-self: stretch;
+          }
 
           &:before {
             content: '';

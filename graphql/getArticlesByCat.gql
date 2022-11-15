@@ -4,6 +4,13 @@ query getArticlesByCat($slug: String!) {
       attributes {
         slug
         title
+        category {
+          data {
+            attributes {
+              name
+            }
+          }
+        }
         type {
           data {
             attributes {

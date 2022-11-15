@@ -5,6 +5,10 @@
 	letter-spacing: 0.05em;
 	color: $black;
 
+	@include mobile-large {
+		font-size: 60rem;
+	}
+
 	@include tablet {
 		font-size: 90rem;
 	}
@@ -133,7 +137,7 @@
 
 @mixin fs-article-title {
     @include thunder-bold;
-	font-size: 80rem;
+	font-size: 70rem;
 	// line-height: 100%;
 	letter-spacing: 0;
     text-transform: uppercase;
@@ -209,26 +213,4 @@
 }
 .fs-caption{
 	@include fs-caption;
-}
-
-@mixin fs-li-menu-mb {
-	@include thunder-semi-bold;
-	font-size: 24rem;
-	line-height: 100%;
-	letter-spacing: 0.05em;
-    text-transform: uppercase;
-}
-.fs-li-menu-mb{
-	@include fs-li-menu-mb;
-}
-
-@mixin fs-sub-li-menu-mb {
-	@include thunder-light;
-	font-size: 18rem;
-	line-height: 100%;
-	letter-spacing: 0.05em;
-    text-transform: uppercase;
-}
-.fs-sub-li-menu-mb{
-	@include fs-sub-li-menu-mb;
 }
