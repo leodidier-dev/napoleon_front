@@ -2,7 +2,7 @@
   <section id="article-content" ref="articleW" class="page">
     <h2 class="fs-article-category">{{ category }}</h2>
     <h1 class="fs-article-title">{{ title }}</h1>
-    <button @click="scrollTop">
+    <button ref="scrollTopCta" @click="scrollTop">
       <img src="~/assets/icons/up-arrow.svg" alt="" />
       <span class="fs-caption">Retour en haut</span>
     </button>
@@ -45,6 +45,16 @@ export default {
     const formattedContent = this.content.replaceAll('/uploads/', process.env.API_STORAGE);
     const htmlContent = this.convertStringToHTML(`<section class="content">${formattedContent}</section>`);
     this.$refs.articleW.append(htmlContent);
+
+    const links = this.$refs.articleW.querySelectorAll('a');
+
+    links.forEach((link) => {
+      link.setAttribute('target', '_blank');
+    });
+
+    window.addEventListener('resize', this.onResize);
+
+    if (document.documentElement.scrollHeight <= window.innerHeight) this.$refs.scrollTopCta.style.display = 'none';
   },
 
   methods: {
@@ -55,6 +65,10 @@ export default {
     },
     scrollTop() {
       this.$nuxt.$emit('scrollTop');
+    },
+    onResize() {
+      if (document.documentElement.scrollHeight <= window.innerHeight) this.$refs.scrollTopCta.style.display = 'none';
+      else this.$refs.scrollTopCta.style.display = 'block';
     },
   },
 };
@@ -67,14 +81,14 @@ export default {
   margin-left: auto;
   margin-right: auto;
   margin-top: 50px;
-  padding-bottom: 200px;
+  padding-bottom: 250px;
 
   button {
     display: flex;
     align-items: center;
     flex-direction: column;
     position: absolute;
-    bottom: 40px;
+    bottom: 80px;
     width: 120px;
     left: 50%;
     transform: translateX(-50%);
@@ -120,6 +134,10 @@ export default {
           font-weight: 800;
         }
       }
+    }
+
+    a {
+      text-decoration: underline;
     }
 
     ol,

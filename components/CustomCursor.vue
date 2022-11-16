@@ -63,7 +63,6 @@ export default {
       this.triggers = [...document.querySelectorAll('[data-cursor]')];
       this.triggers.forEach((trigger) => trigger.addEventListener('mouseenter', this.onEnter));
       this.triggers.forEach((trigger) => trigger.addEventListener('mouseleave', this.onLeave));
-      console.log(this.triggers);
     },
   },
 };

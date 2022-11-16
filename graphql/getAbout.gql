@@ -1,0 +1,10 @@
+query getAbout {
+  about {
+    data {
+      attributes {
+        title
+        content
+      }
+    }
+  }
+}

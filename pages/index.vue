@@ -2,7 +2,7 @@
   <section class="page">
     <h1 class="title">A la une aujourd'hui,</h1>
     <div class="content">
-      <nuxt-link class="article main" :to="`/article/${dayArticles[0].attributes.slug}`" data-cursor>
+      <nuxt-link class="article main" :to="`/article/${dayArticles[0].attributes.slug}`">
         <div class="picture-w">
           <img :src="formattedUrlImage(dayArticles[0])" alt="" />
           <h2 class="article-title">{{ dayArticles[0].attributes.title }}</h2>
@@ -52,7 +52,6 @@
         </div>
       </nuxt-link>
     </div>
-    <div class="footer"></div>
   </section>
 </template>
 
@@ -440,16 +439,6 @@ section {
           }
         }
       }
-    }
-  }
-  .footer {
-    margin-top: 40px;
-    border-top: 10px solid $black;
-    height: 100px;
-    width: 100%;
-
-    @include tablet {
-      margin-top: 0;
     }
   }
 }

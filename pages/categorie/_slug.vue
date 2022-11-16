@@ -15,7 +15,7 @@
     </div>
     <ul v-if="articles">
       <li v-for="article in filteredArticles" :key="article.attributes.slug" class="fs-cta black">
-        <nuxt-link :to="`/article/${article.attributes.slug}`" data-cursor>{{ article.attributes.title }}</nuxt-link>
+        <nuxt-link :to="`/article/${article.attributes.slug}`">{{ article.attributes.title }}</nuxt-link>
       </li>
     </ul>
   </section>

@@ -13,6 +13,7 @@
     </div>
     <navbar />
     <nuxt />
+    <Footer />
   </div>
 </template>
 
@@ -20,9 +21,10 @@
 import Lenis from '@studio-freight/lenis';
 import { gsap } from 'gsap';
 import CustomCursor from '../components/CustomCursor.vue';
+import Footer from '../components/Footer.vue';
 export default {
   name: 'DefaultLayout',
-  components: { CustomCursor },
+  components: { CustomCursor, Footer },
   data() {
     return {
       lenis: null,
