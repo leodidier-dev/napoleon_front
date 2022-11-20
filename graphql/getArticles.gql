@@ -5,6 +5,7 @@ query getArticles {
         slug
         abstract
         title
+        content
         category {
           data {
             attributes {

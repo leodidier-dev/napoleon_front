@@ -4,7 +4,6 @@
     <h1 class="fs-article-title">{{ title }}</h1>
     <button ref="scrollTopCta" @click="scrollTop">
       <img src="~/assets/icons/up-arrow.svg" alt="" />
-      <span class="fs-caption">Retour en haut</span>
     </button>
   </section>
 </template>
@@ -81,20 +80,31 @@ export default {
   margin-left: auto;
   margin-right: auto;
   margin-top: 50px;
-  padding-bottom: 250px;
+  padding-bottom: 100px;
 
   button {
     display: flex;
     align-items: center;
     flex-direction: column;
     position: absolute;
-    bottom: 80px;
-    width: 120px;
+    bottom: 60px;
+    width: 100px;
     left: 50%;
     transform: translateX(-50%);
+    transition: transform 0.4s ease;
+
+    @include tablet {
+      transform: unset;
+      left: unset;
+      right: 20px;
+    }
 
     img {
       width: 100%;
+    }
+
+    @include hover {
+      transform: translateY(-10px);
     }
   }
 

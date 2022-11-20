@@ -7,7 +7,7 @@
           <img :src="formattedUrlImage(dayArticles[0])" alt="" />
           <h2 class="article-title">{{ dayArticles[0].attributes.title }}</h2>
         </div>
-        <p class="abstract">{{ dayArticles[0].attributes.abstract }}</p>
+        <p class="abstract">{{ extractContent(dayArticles[0].attributes.content) }}</p>
       </nuxt-link>
       <nuxt-link class="article side top-side" :to="`/article/${dayArticles[1].attributes.slug}`">
         <div class="side-category">{{ dayArticles[1].attributes.category.data.attributes.name }}</div>
@@ -16,7 +16,7 @@
         <div class="picture-w">
           <img :src="formattedUrlImage(dayArticles[1])" alt="" />
         </div>
-        <p class="abstract">{{ dayArticles[1].attributes.abstract }}</p>
+        <p class="abstract">{{ extractContent(dayArticles[1].attributes.content) }}</p>
       </nuxt-link>
       <nuxt-link class="article side bottom-side" :to="`/article/${dayArticles[2].attributes.slug}`">
         <div class="side-category">{{ dayArticles[2].attributes.category.data.attributes.name }}</div>
@@ -25,14 +25,14 @@
         <div class="picture-w">
           <img :src="formattedUrlImage(dayArticles[2])" alt="" />
         </div>
-        <p class="abstract">{{ dayArticles[2].attributes.abstract }}</p>
+        <p class="abstract">{{ extractContent(dayArticles[2].attributes.content) }}</p>
       </nuxt-link>
       <nuxt-link class="article bottom left-bottom" :to="`/article/${dayArticles[3].attributes.slug}`">
         <div class="side-category">{{ dayArticles[3].attributes.category.data.attributes.name }}</div>
         <div class="bottom-content">
           <div class="bottom-txt">
             <div class="bottom-title">{{ dayArticles[3].attributes.title }}</div>
-            <p class="abstract">{{ dayArticles[3].attributes.abstract }}</p>
+            <p class="abstract">{{ extractContent(dayArticles[3].attributes.content) }}</p>
           </div>
           <div class="picture-w">
             <img :src="formattedUrlImage(dayArticles[3])" alt="" />
@@ -44,7 +44,7 @@
         <div class="bottom-content">
           <div class="bottom-txt">
             <div class="bottom-title">{{ dayArticles[4].attributes.title }}</div>
-            <p class="abstract">{{ dayArticles[4].attributes.abstract }}</p>
+            <p class="abstract">{{ extractContent(dayArticles[4].attributes.content) }}</p>
           </div>
           <div class="picture-w">
             <img :src="formattedUrlImage(dayArticles[4])" alt="" />
@@ -56,7 +56,6 @@
 </template>
 
 <script>
-// import { gsap } from 'gsap';
 import getArticles from '~/graphql/getArticles';
 
 export default {
@@ -101,7 +100,17 @@ export default {
 
   mounted() {},
 
-  methods: {},
+  methods: {
+    extractContent(value) {
+      if (process.client) {
+        const div = document.createElement('div');
+        div.innerHTML = value;
+        const test = div.querySelector('p').innerHTML;
+        return test;
+      }
+      return 'loading';
+    },
+  },
 };
 </script>
 
@@ -222,11 +231,15 @@ section {
         @include thunder-light;
         color: $black;
         font-size: 24rem;
-        text-align: justify;
         letter-spacing: 0.03em;
+        text-align: justify;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 5;
+        overflow: hidden;
 
         @include tablet {
-          font-size: 28rem;
+          // font-size: 28rem;
         }
 
         &::first-letter {
@@ -261,7 +274,7 @@ section {
 
       .side-category {
         @include thunder-semi-bold;
-        color: $blue;
+        color: $red;
         font-size: 20rem;
         padding-bottom: 8px;
         text-transform: uppercase;
@@ -313,11 +326,15 @@ section {
         @include thunder-light;
         color: $black;
         font-size: 22rem;
-        text-align: justify;
         letter-spacing: 0.03em;
+        text-align: justify;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 5;
+        overflow: hidden;
 
         @include tablet {
-          font-size: 24rem;
+          // font-size: 24rem;
         }
 
         &::first-letter {
@@ -357,7 +374,7 @@ section {
         color: $white;
         font-size: 20rem;
         padding: 8px 0;
-        background-color: $blue;
+        background-color: $red;
         text-transform: uppercase;
         text-align: center;
 

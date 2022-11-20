@@ -71,6 +71,7 @@ export default {
 
 <style lang="scss" scoped>
 #layout {
+  padding-bottom: 100px;
   //position: relative;
   // overflow-x: hidden;
 

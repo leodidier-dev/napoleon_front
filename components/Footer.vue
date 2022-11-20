@@ -1,5 +1,8 @@
 <template>
-  <footer class="footer fs-caption black">©Alain KLEIN</footer>
+  <footer class="footer fs-caption black">
+    <span class="copyright">©Alain KLEIN</span>
+    <a href="mailto:leo@gmail.com" class="contact fs-caption black">Me contacter<MailSVG /></a>
+  </footer>
 </template>
 
 <script>
@@ -17,5 +20,30 @@ export default {
   padding: 14px 0;
   text-align: center;
   max-width: 1920px;
+
+  .copyright {
+    @include mobile-only {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .contact {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    @include hover {
+      svg {
+        transform: translateX(2px);
+      }
+    }
+  }
 }
 </style>
