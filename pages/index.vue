@@ -8,6 +8,7 @@
           <h2 class="article-title">{{ dayArticles[0].attributes.title }}</h2>
         </div>
         <p class="abstract">{{ extractContent(dayArticles[0].attributes.content) }}</p>
+        <p class="read-more fs-p black">[Lire la suite]</p>
       </nuxt-link>
       <nuxt-link class="article side top-side" :to="`/article/${dayArticles[1].attributes.slug}`">
         <div class="side-category">{{ dayArticles[1].attributes.category.data.attributes.name }}</div>
@@ -17,6 +18,7 @@
           <img :src="formattedUrlImage(dayArticles[1])" alt="" />
         </div>
         <p class="abstract">{{ extractContent(dayArticles[1].attributes.content) }}</p>
+        <p class="read-more fs-p black">[Lire la suite]</p>
       </nuxt-link>
       <nuxt-link class="article side bottom-side" :to="`/article/${dayArticles[2].attributes.slug}`">
         <div class="side-category">{{ dayArticles[2].attributes.category.data.attributes.name }}</div>
@@ -26,6 +28,7 @@
           <img :src="formattedUrlImage(dayArticles[2])" alt="" />
         </div>
         <p class="abstract">{{ extractContent(dayArticles[2].attributes.content) }}</p>
+        <p class="read-more fs-p black">[Lire la suite]</p>
       </nuxt-link>
       <nuxt-link class="article bottom left-bottom" :to="`/article/${dayArticles[3].attributes.slug}`">
         <div class="side-category">{{ dayArticles[3].attributes.category.data.attributes.name }}</div>
@@ -33,6 +36,7 @@
           <div class="bottom-txt">
             <div class="bottom-title">{{ dayArticles[3].attributes.title }}</div>
             <p class="abstract">{{ extractContent(dayArticles[3].attributes.content) }}</p>
+            <p class="read-more fs-p black">[Lire la suite]</p>
           </div>
           <div class="picture-w">
             <img :src="formattedUrlImage(dayArticles[3])" alt="" />
@@ -45,6 +49,7 @@
           <div class="bottom-txt">
             <div class="bottom-title">{{ dayArticles[4].attributes.title }}</div>
             <p class="abstract">{{ extractContent(dayArticles[4].attributes.content) }}</p>
+            <p class="read-more fs-p black">[Lire la suite]</p>
           </div>
           <div class="picture-w">
             <img :src="formattedUrlImage(dayArticles[4])" alt="" />
@@ -247,6 +252,15 @@ section {
           font-weight: 800;
         }
       }
+
+      .read-more {
+        @include thunder-semi-bold;
+        color: $black;
+        font-size: 20rem;
+        letter-spacing: 0.03em;
+        margin-top: 8px;
+        text-align: right;
+      }
     }
 
     .top-side {
@@ -342,6 +356,15 @@ section {
           font-weight: 800;
         }
       }
+
+      .read-more {
+        @include thunder-semi-bold;
+        color: $black;
+        font-size: 20rem;
+        letter-spacing: 0.03em;
+        margin-top: 8px;
+        text-align: right;
+      }
     }
 
     .left-bottom {
@@ -432,6 +455,15 @@ section {
               font-size: 150%;
               font-weight: 800;
             }
+          }
+
+          .read-more {
+            @include thunder-semi-bold;
+            color: $black;
+            font-size: 20rem;
+            letter-spacing: 0.03em;
+            margin-top: 8px;
+            text-align: right;
           }
         }
 
