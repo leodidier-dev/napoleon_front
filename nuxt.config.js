@@ -1,5 +1,5 @@
 export default {
-  target: 'serverless',
+  target: 'static',
   server: {
     // host: '0.0.0.0', // default: localhost
   }, // other configs
@@ -77,7 +77,7 @@ export default {
         httpLinkOptions: {
           headers: {
             Authorization:
-              'bearer a50f284abf8672542833fde1d9d595d753b0d58d4d19265885e3bcc7ef222ae2afe7a5fed99e3f48f5d10c7e4d4f55ed027ff76222d000be7edea56d848b44a9e5c868d859ef7b0c44a7738e95e05d2c2e9f90abf7b29a7eaa119818dbe2ef64ea5366316e4d4f8613f0cc9caae72da7f34b99cea7b428af8efbfa21114bceb1',
+              'bearer b4ac6ff3356e152fe66fbce25eca322e29c938ea758b7e6534cef7f0fd8266030aaf2f5ea65fc05a8f032325c3486f2c566ec9de56e5838da508efac2169673a305ead6063d9d093d1db24646ceb05e1a1848b3782ebb5775c44ca70a57af42343077466abdb1877ff390e11ad122a9860903a40be933180204c662ad619c253',
           },
         },
       },
