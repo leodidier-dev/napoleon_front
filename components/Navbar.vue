@@ -17,63 +17,8 @@
 </template>
 
 <script>
-import getCategories from '~/graphql/getCategories';
 export default {
   name: 'NavbarComp',
-  data() {
-    return {
-      categories: {},
-    };
-  },
-  apollo: {
-    categories: {
-      prefetch: true,
-      query: getCategories,
-    },
-  },
-  computed: {
-    parents() {
-      return this.categories.data;
-    },
-    childs() {
-      return (parent) => parent.articles.data;
-    },
-    currentDate() {
-      const mois = [
-        'janvier',
-        'février',
-        'mars',
-        'avril',
-        'mai',
-        'juin',
-        'juillet',
-        'août',
-        'septembre',
-        'octobre',
-        'novembre',
-        'décembre',
-      ];
-
-      const today = new Date();
-      const year = today.getFullYear();
-      const dayNumber = today.getDate();
-      const month = mois[today.getMonth()];
-      const weekday = today.toLocaleDateString('fr-FR', { weekday: 'long' });
-      const capitalize = ([first, ...rest]) => first.toUpperCase() + rest.join('').toLowerCase();
-      const aujourdhui = `${capitalize(weekday)}, le ${dayNumber} ${month} ${year}`;
-
-      return aujourdhui;
-    },
-  },
-
-  mounted() {},
-
-  methods: {
-    toggleMbMenu() {
-      this.$refs.burgerCta.classList.toggle('open');
-      this.$refs.mbMenu.classList.toggle('open');
-    },
-  },
 };
 </script>
 
