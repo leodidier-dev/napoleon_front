@@ -1,62 +1,7 @@
 <template>
   <section class="page">
     <h1 class="title">A la une aujourd'hui,</h1>
-    <div class="content">
-      <nuxt-link class="article main" :to="`/article/${dayArticles[0].attributes.slug}`">
-        <div class="picture-w">
-          <img :src="formattedUrlImage(dayArticles[0])" alt="" />
-          <h2 class="article-title">{{ dayArticles[0].attributes.title }}</h2>
-        </div>
-        <p class="abstract">{{ extractContent(dayArticles[0].attributes.content) }}</p>
-        <p class="read-more fs-p black">[Lire la suite]</p>
-      </nuxt-link>
-      <nuxt-link class="article side top-side" :to="`/article/${dayArticles[1].attributes.slug}`">
-        <div class="side-category">{{ dayArticles[1].attributes.category.data.attributes.name }}</div>
-        <hr />
-        <div class="side-title">{{ dayArticles[1].attributes.title }}</div>
-        <div class="picture-w">
-          <img :src="formattedUrlImage(dayArticles[1])" alt="" />
-        </div>
-        <p class="abstract">{{ extractContent(dayArticles[1].attributes.content) }}</p>
-        <p class="read-more fs-p black">[Lire la suite]</p>
-      </nuxt-link>
-      <nuxt-link class="article side bottom-side" :to="`/article/${dayArticles[2].attributes.slug}`">
-        <div class="side-category">{{ dayArticles[2].attributes.category.data.attributes.name }}</div>
-        <hr />
-        <div class="side-title">{{ dayArticles[2].attributes.title }}</div>
-        <div class="picture-w">
-          <img :src="formattedUrlImage(dayArticles[2])" alt="" />
-        </div>
-        <p class="abstract">{{ extractContent(dayArticles[2].attributes.content) }}</p>
-        <p class="read-more fs-p black">[Lire la suite]</p>
-      </nuxt-link>
-      <nuxt-link class="article bottom left-bottom" :to="`/article/${dayArticles[3].attributes.slug}`">
-        <div class="side-category">{{ dayArticles[3].attributes.category.data.attributes.name }}</div>
-        <div class="bottom-content">
-          <div class="bottom-txt">
-            <div class="bottom-title">{{ dayArticles[3].attributes.title }}</div>
-            <p class="abstract">{{ extractContent(dayArticles[3].attributes.content) }}</p>
-            <p class="read-more fs-p black">[Lire la suite]</p>
-          </div>
-          <div class="picture-w">
-            <img :src="formattedUrlImage(dayArticles[3])" alt="" />
-          </div>
-        </div>
-      </nuxt-link>
-      <nuxt-link class="article bottom right-bottom" :to="`/article/${dayArticles[4].attributes.slug}`">
-        <div class="side-category">{{ dayArticles[4].attributes.category.data.attributes.name }}</div>
-        <div class="bottom-content">
-          <div class="bottom-txt">
-            <div class="bottom-title">{{ dayArticles[4].attributes.title }}</div>
-            <p class="abstract">{{ extractContent(dayArticles[4].attributes.content) }}</p>
-            <p class="read-more fs-p black">[Lire la suite]</p>
-          </div>
-          <div class="picture-w">
-            <img :src="formattedUrlImage(dayArticles[4])" alt="" />
-          </div>
-        </div>
-      </nuxt-link>
-    </div>
+    <div class="content"></div>
   </section>
 </template>
 
