@@ -1,14 +1,11 @@
 <template>
   <div class="header">
     <div class="top">
-      <nuxt-link to="/" class="sitename fs-sitename">Les militaires du Bas-Rhin sous la Révolution et le Premier Empire</nuxt-link>
       <h3 class="date fs-date">{{ currentDate }}</h3>
     </div>
     <nav>
       <ul class="menu">
-        <li class="item">
-          <nuxt-link to="/a-propos" data-cursor> A propos </nuxt-link>
-        </li>
+        <li class="item"></li>
         <li v-for="parent in parents" :key="parent.id" class="item" data-cursor>
           <nuxt-link :to="`/categorie/${parent.attributes.slug}`">
             {{ parent.attributes.name }}
