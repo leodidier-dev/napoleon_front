@@ -1,6 +1,6 @@
 <template>
   <section class="page">
-    <h1 class="title">A la une aujourd'hui,</h1>
+    <!-- <h1 class="title">A la une aujourd'hui,</h1>
     <div class="content">
       <nuxt-link class="article main" :to="`/article/${dayArticles[0].attributes.slug}`">
         <div class="picture-w">
@@ -56,7 +56,7 @@
           </div>
         </div>
       </nuxt-link>
-    </div>
+    </div> -->
   </section>
 </template>
 
@@ -66,56 +66,56 @@ import getArticles from '~/graphql/getArticles';
 export default {
   name: 'IndexPage',
 
-  async asyncData({ app }) {
-    const client = app.apolloProvider.defaultClient;
+  // async asyncData({ app }) {
+  //   const client = app.apolloProvider.defaultClient;
 
-    const res = await client.query({
-      query: getArticles,
-    });
+  //   const res = await client.query({
+  //     query: getArticles,
+  //   });
 
-    const { articles } = res.data;
+  //   const { articles } = res.data;
 
-    return {
-      articles,
-    };
-  },
+  //   return {
+  //     articles,
+  //   };
+  // },
 
-  data() {
-    return {};
-  },
+  // data() {
+  //   return {};
+  // },
 
-  computed: {
-    formattedUrlImage() {
-      return (article) => article.attributes.image.data.attributes.url.replace('/uploads/', process.env.API_STORAGE);
-    },
-    dayArticles() {
-      const articles = [...this.articles.data];
-      // (new Date()).getTime() gets the number of ms since 1 January 1970 00:00:00 UTC
-      // we divide by ms_per_day and floor to get the number of 24-hour cycles (this will increment each UTC day)
-      // we mod by the length of phones to get a number in the range [0, phones.length)
-      const firstIndex = Math.floor(new Date().getTime() / (24 * 60 * 60 * 1000)) % articles.length;
-      const mainArticle = articles[firstIndex];
-      articles.splice(firstIndex, 1);
-      const articlesSelected = articles.sort(() => 0.5 - Math.random()).slice(0, 4);
-      articlesSelected.unshift(mainArticle);
+  // computed: {
+  //   formattedUrlImage() {
+  //     return (article) => article.attributes.image.data.attributes.url.replace('/uploads/', process.env.API_STORAGE);
+  //   },
+  //   dayArticles() {
+  //     const articles = [...this.articles.data];
+  //     // (new Date()).getTime() gets the number of ms since 1 January 1970 00:00:00 UTC
+  //     // we divide by ms_per_day and floor to get the number of 24-hour cycles (this will increment each UTC day)
+  //     // we mod by the length of phones to get a number in the range [0, phones.length)
+  //     const firstIndex = Math.floor(new Date().getTime() / (24 * 60 * 60 * 1000)) % articles.length;
+  //     const mainArticle = articles[firstIndex];
+  //     articles.splice(firstIndex, 1);
+  //     const articlesSelected = articles.sort(() => 0.5 - Math.random()).slice(0, 4);
+  //     articlesSelected.unshift(mainArticle);
 
-      return articlesSelected;
-    },
-  },
+  //     return articlesSelected;
+  //   },
+  // },
 
-  mounted() {},
+  // mounted() {},
 
-  methods: {
-    extractContent(value) {
-      if (process.client) {
-        const div = document.createElement('div');
-        div.innerHTML = value;
-        const test = div.querySelector('p').innerHTML;
-        return test;
-      }
-      return 'loading';
-    },
-  },
+  // methods: {
+  //   extractContent(value) {
+  //     if (process.client) {
+  //       const div = document.createElement('div');
+  //       div.innerHTML = value;
+  //       const test = div.querySelector('p').innerHTML;
+  //       return test;
+  //     }
+  //     return 'loading';
+  //   },
+  // },
 };
 </script>
 
