@@ -1,11 +1,14 @@
 <template>
   <div class="header">
     <div class="top">
+      <nuxt-link to="/" class="sitename fs-sitename">Les militaires du Bas-Rhin sous la Révolution et le Premier Empire</nuxt-link>
       <h3 class="date fs-date">{{ currentDate }}</h3>
     </div>
     <nav>
       <ul class="menu">
-        <li class="item"></li>
+        <li class="item">
+          <nuxt-link to="/a-propos" data-cursor> A propos </nuxt-link>
+        </li>
         <li v-for="parent in parents" :key="parent.id" class="item" data-cursor>
           <nuxt-link :to="`/categorie/${parent.attributes.slug}`">
             {{ parent.attributes.name }}
@@ -17,8 +20,63 @@
 </template>
 
 <script>
+import getCategories from '~/graphql/getCategories';
 export default {
   name: 'NavbarComp',
+  data() {
+    return {
+      categories: {},
+    };
+  },
+  apollo: {
+    categories: {
+      prefetch: true,
+      query: getCategories,
+    },
+  },
+  computed: {
+    parents() {
+      return this.categories.data;
+    },
+    childs() {
+      return (parent) => parent.articles.data;
+    },
+    currentDate() {
+      const mois = [
+        'janvier',
+        'février',
+        'mars',
+        'avril',
+        'mai',
+        'juin',
+        'juillet',
+        'août',
+        'septembre',
+        'octobre',
+        'novembre',
+        'décembre',
+      ];
+
+      const today = new Date();
+      const year = today.getFullYear();
+      const dayNumber = today.getDate();
+      const month = mois[today.getMonth()];
+      const weekday = today.toLocaleDateString('fr-FR', { weekday: 'long' });
+      const capitalize = ([first, ...rest]) => first.toUpperCase() + rest.join('').toLowerCase();
+      const aujourdhui = `${capitalize(weekday)}, le ${dayNumber} ${month} ${year}`;
+
+      return aujourdhui;
+    },
+  },
+
+  mounted() {},
+
+  methods: {
+    toggleMbMenu() {
+      this.$refs.burgerCta.classList.toggle('open');
+      this.$refs.mbMenu.classList.toggle('open');
+    },
+  },
 };
 </script>
 
