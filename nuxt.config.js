@@ -1,5 +1,10 @@
 export default {
   target: 'static',
+
+  generate: {
+    fallback: true,
+  },
+
   server: {
     // host: '0.0.0.0', // default: localhost
   }, // other configs
