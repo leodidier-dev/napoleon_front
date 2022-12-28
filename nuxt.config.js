@@ -85,7 +85,9 @@ export default {
     },
   },
 
-  sitemap: {},
+  sitemap: {
+    hostname: 'https://revolution-empire-67.fr',
+  },
 
   env: {
     strapiBaseUri: process.env.API_URL || 'http://localhost:1337',
