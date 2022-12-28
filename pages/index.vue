@@ -2,7 +2,7 @@
   <section class="page">
     <h1 class="title">A la une aujourd'hui,</h1>
     <div class="content">
-      <nuxt-link class="article main" :to="`/article/${dayArticles[0].attributes.slug}`">
+      <nuxt-link v-if="dayArticles[0]" class="article main" :to="`/article/${dayArticles[0].attributes.slug}`">
         <div class="picture-w">
           <img :src="formattedUrlImage(dayArticles[0])" alt="" />
           <h2 class="article-title">{{ dayArticles[0].attributes.title }}</h2>
@@ -10,7 +10,7 @@
         <p class="abstract">{{ extractContent(dayArticles[0].attributes.content) }}</p>
         <p class="read-more fs-p black">[Lire la suite]</p>
       </nuxt-link>
-      <nuxt-link class="article side top-side" :to="`/article/${dayArticles[1].attributes.slug}`">
+      <nuxt-link v-if="dayArticles[1]" class="article side top-side" :to="`/article/${dayArticles[1].attributes.slug}`">
         <div class="side-category">{{ dayArticles[1].attributes.category.data.attributes.name }}</div>
         <hr />
         <div class="side-title">{{ dayArticles[1].attributes.title }}</div>
@@ -20,7 +20,7 @@
         <p class="abstract">{{ extractContent(dayArticles[1].attributes.content) }}</p>
         <p class="read-more fs-p black">[Lire la suite]</p>
       </nuxt-link>
-      <nuxt-link class="article side bottom-side" :to="`/article/${dayArticles[2].attributes.slug}`">
+      <nuxt-link v-if="dayArticles[2]" class="article side bottom-side" :to="`/article/${dayArticles[2].attributes.slug}`">
         <div class="side-category">{{ dayArticles[2].attributes.category.data.attributes.name }}</div>
         <hr />
         <div class="side-title">{{ dayArticles[2].attributes.title }}</div>
@@ -30,7 +30,7 @@
         <p class="abstract">{{ extractContent(dayArticles[2].attributes.content) }}</p>
         <p class="read-more fs-p black">[Lire la suite]</p>
       </nuxt-link>
-      <nuxt-link class="article bottom left-bottom" :to="`/article/${dayArticles[3].attributes.slug}`">
+      <nuxt-link v-if="dayArticles[3]" class="article bottom left-bottom" :to="`/article/${dayArticles[3].attributes.slug}`">
         <div class="side-category">{{ dayArticles[3].attributes.category.data.attributes.name }}</div>
         <div class="bottom-content">
           <div class="bottom-txt">
@@ -43,7 +43,7 @@
           </div>
         </div>
       </nuxt-link>
-      <nuxt-link class="article bottom right-bottom" :to="`/article/${dayArticles[4].attributes.slug}`">
+      <nuxt-link v-if="dayArticles[4]" class="article bottom right-bottom" :to="`/article/${dayArticles[4].attributes.slug}`">
         <div class="side-category">{{ dayArticles[4].attributes.category.data.attributes.name }}</div>
         <div class="bottom-content">
           <div class="bottom-txt">
@@ -80,7 +80,7 @@ export default {
     };
   },
 
-  data() {
+  head() {
     return {};
   },
 
@@ -110,8 +110,8 @@ export default {
       if (process.client) {
         const div = document.createElement('div');
         div.innerHTML = value;
-        const test = div.querySelector('p').innerHTML;
-        return test;
+        const el = div.querySelector('p') ? div.querySelector('p').innerText : div.firstChild.innerText;
+        return el;
       }
       return 'loading';
     },

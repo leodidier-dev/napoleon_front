@@ -28,6 +28,12 @@ export default {
       articles,
     };
   },
+
+  head() {
+    return {
+      title: 'Révolution Empire 67 - ' + this.title,
+    };
+  },
   computed: {
     category() {
       return this.articles.data[0].attributes.category.data.attributes.name;

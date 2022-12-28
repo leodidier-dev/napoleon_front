@@ -10,7 +10,8 @@ export default {
   }, // other configs
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'napoleon_front',
+    title: 'Révolution Empire 67',
+
     htmlAttrs: {
       lang: 'fr',
     },
@@ -36,7 +37,7 @@ export default {
   buildModules: ['@nuxtjs/dotenv', '@nuxtjs/eslint-module'],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['@nuxtjs/style-resources', '@nuxtjs/axios', '@nuxtjs/apollo'],
+  modules: ['@nuxtjs/style-resources', '@nuxtjs/axios', '@nuxtjs/apollo', '@nuxtjs/sitemap'],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
@@ -61,7 +62,7 @@ export default {
   },
 
   axios: {
-    baseURL: 'http://localhost:1337',
+    baseURL: process.env.API_ENDPOINT || '',
     headers: {
       common: {
         Authorization:
@@ -71,11 +72,6 @@ export default {
   },
 
   apollo: {
-    // includeNodeModules: true,
-    // clientConfigs: {
-    //   default: '@/graphql/config/default.js' // This is where you'll set up the client and import the possible fragment types
-    // }
-
     clientConfigs: {
       default: {
         httpEndpoint: process.env.API_ENDPOINT || '',
@@ -88,6 +84,8 @@ export default {
       },
     },
   },
+
+  sitemap: {},
 
   env: {
     strapiBaseUri: process.env.API_URL || 'http://localhost:1337',

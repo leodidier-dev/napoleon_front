@@ -48,26 +48,34 @@ export default {
     };
   },
 
+  head() {
+    return {
+      title: 'Révolution Empire 67 - ' + this.category,
+    };
+  },
+
   computed: {
     category() {
-      return this.articles.data[0].attributes.category.data.attributes.name;
+      return this.articles.data[0] ? this.articles.data[0].attributes.category.data.attributes.name : "Pas d'articles";
     },
     types() {
       const types = this.articles.data.map((el) => {
-        return el.attributes.type.data.attributes.name;
+        return el.attributes.type.data ? el.attributes.type.data.attributes.name : '';
       });
       return [...new Set(types)];
     },
     filteredArticles() {
       return this.articles.data.filter((el) => {
-        return this.selectedTypes.includes(el.attributes.type.data.attributes.name);
+        return el.attributes.type.data ? this.selectedTypes.includes(el.attributes.type.data.attributes.name) : el;
       });
     },
   },
 
   mounted() {
-    this.selectedTypes = [...this.types];
-    this.selectedTypes.length = 1;
+    if (this.types) {
+      this.selectedTypes = [...this.types];
+      this.selectedTypes.length = 1;
+    }
   },
 
   methods: {

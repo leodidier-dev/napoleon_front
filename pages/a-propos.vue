@@ -23,6 +23,12 @@ export default {
       about,
     };
   },
+
+  head() {
+    return {
+      title: 'Révolution Empire 67 - ' + this.title,
+    };
+  },
   computed: {
     title() {
       return this.about.data.attributes.title;

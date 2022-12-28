@@ -70,12 +70,17 @@ export default {
 
 <style lang="scss">
 #cursor {
-  width: 18px;
-  z-index: 1000;
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
+  display: none;
+
+  @include tablet {
+    display: block;
+    width: 18px;
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+  }
 
   svg {
     width: 100%;
