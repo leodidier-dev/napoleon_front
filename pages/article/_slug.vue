@@ -62,6 +62,10 @@ export default {
     if (document.documentElement.scrollHeight <= window.innerHeight) this.$refs.scrollTopCta.style.display = 'none';
   },
 
+  beforeDestroy() {
+    window.removeEventListener('resize', this.onResize);
+  },
+
   methods: {
     convertStringToHTML(content) {
       const parser = new DOMParser();

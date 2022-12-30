@@ -18,7 +18,12 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      {
+        hid: 'description',
+        name: 'description',
+        content:
+          'revolution-empire-67 est un blog qui essaye de relater les évènements militaires qui se sont déroulés durant la période de la Révolution Française et du 1er Empire dans le département du Bas-Rhin. Il se subdivise en plusieurs grandes parties présentant le fruit de plusieurs années de recherche.',
+      },
       { name: 'format-detection', content: 'telephone=no' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],

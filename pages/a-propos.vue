@@ -39,6 +39,7 @@ export default {
   },
 
   mounted() {
+    console.log(this.content.length > 1500);
     const formattedContent = this.content.replaceAll('/uploads/', process.env.API_STORAGE);
     const htmlContent = this.convertStringToHTML(`<section class="content">${formattedContent}</section>`);
     this.$refs.aboutW.append(htmlContent);
@@ -52,6 +53,10 @@ export default {
     window.addEventListener('resize', this.onResize);
 
     if (document.documentElement.scrollHeight <= window.innerHeight) this.$refs.scrollTopCta.style.display = 'none';
+  },
+
+  beforeDestroy() {
+    window.removeEventListener('resize', this.onResize);
   },
 
   methods: {
