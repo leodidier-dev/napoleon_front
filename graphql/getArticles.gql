@@ -3,7 +3,6 @@ query getArticles {
     data {
       attributes {
         slug
-        abstract
         title
         content
         category {

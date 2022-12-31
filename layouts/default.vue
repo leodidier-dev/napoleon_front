@@ -26,7 +26,7 @@ export default {
     const lenis = new Lenis({
       duration: 1.2,
       smooth: true,
-      smoothTouch: true,
+      smoothTouch: false,
     });
 
     this.lenis = lenis;

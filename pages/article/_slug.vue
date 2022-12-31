@@ -51,6 +51,8 @@ export default {
     const htmlContent = this.convertStringToHTML(`<section class="content">${formattedContent}</section>`);
     this.$refs.articleW.append(htmlContent);
 
+    if (this.content.length > 1400) this.$refs.articleW.querySelector('.content').classList.add('two-columns');
+
     const links = this.$refs.articleW.querySelectorAll('a');
 
     links.forEach((link) => {
@@ -120,9 +122,12 @@ export default {
 
   .content {
     @include tablet {
-      columns: 2;
-      column-gap: 80px;
       margin-top: 16px;
+
+      &.two-columns {
+        columns: 2;
+        column-gap: 80px;
+      }
     }
 
     @include desktop {

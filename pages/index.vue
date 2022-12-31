@@ -212,7 +212,7 @@ section {
           left: 50%;
           transform: translateX(-50%);
           @include thunder-bold;
-          color: $white;
+          color: $red;
           font-size: 40rem;
           z-index: 2;
           text-align: center;
