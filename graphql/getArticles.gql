@@ -16,6 +16,7 @@ query getArticles {
           data {
             attributes {
               url
+              caption
             }
           }
         }

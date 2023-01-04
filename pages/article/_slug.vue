@@ -161,6 +161,14 @@ export default {
       }
     }
 
+    p:has(img) {
+      text-indent: unset;
+    }
+
+    img {
+      width: 100%;
+    }
+
     a {
       text-decoration: underline;
     }

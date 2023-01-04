@@ -5,6 +5,7 @@
       <nuxt-link v-if="dayArticles[0]" class="article main" :to="`/article/${dayArticles[0].attributes.slug}`">
         <div class="picture-w">
           <img :src="formattedUrlImage(dayArticles[0])" alt="" />
+          <figcaption>{{ dayArticles[0].attributes.image.data.attributes.caption }}</figcaption>
           <h2 class="article-title">{{ dayArticles[0].attributes.title }}</h2>
         </div>
         <p class="abstract">{{ extractContent(dayArticles[0].attributes.content) }}</p>
@@ -16,6 +17,7 @@
         <div class="side-title">{{ dayArticles[1].attributes.title }}</div>
         <div class="picture-w">
           <img :src="formattedUrlImage(dayArticles[1])" alt="" />
+          <figcaption>{{ dayArticles[1].attributes.image.data.attributes.caption }}</figcaption>
         </div>
         <p class="abstract">{{ extractContent(dayArticles[1].attributes.content) }}</p>
         <p class="read-more fs-p black">[Lire la suite]</p>
@@ -26,6 +28,7 @@
         <div class="side-title">{{ dayArticles[2].attributes.title }}</div>
         <div class="picture-w">
           <img :src="formattedUrlImage(dayArticles[2])" alt="" />
+          <figcaption>{{ dayArticles[2].attributes.image.data.attributes.caption }}</figcaption>
         </div>
         <p class="abstract">{{ extractContent(dayArticles[2].attributes.content) }}</p>
         <p class="read-more fs-p black">[Lire la suite]</p>
@@ -40,6 +43,7 @@
           </div>
           <div class="picture-w">
             <img :src="formattedUrlImage(dayArticles[3])" alt="" />
+            <figcaption>{{ dayArticles[3].attributes.image.data.attributes.caption }}</figcaption>
           </div>
         </div>
       </nuxt-link>
@@ -168,6 +172,15 @@ section {
         height: 100%;
         object-fit: cover;
         transition: transform 0.8s ease-in-out, filter 0.6s ease-in-out;
+      }
+
+      figcaption {
+        @include fs-caption;
+        bottom: 10px;
+        right: 10px;
+        color: $white;
+        position: absolute;
+        max-width: 85%;
       }
     }
 

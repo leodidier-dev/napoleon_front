@@ -1,7 +1,7 @@
 <template>
   <footer class="footer fs-caption black">
     <span class="copyright">©Alain KLEIN</span>
-    <a href="mailto:contact@revolution-empire-67.fr" class="contact fs-caption black">Me contacter<MailSVG /></a>
+    <a href="mailto:grognard68@orange.fr" class="contact fs-caption black">Me contacter<MailSVG /></a>
   </footer>
 </template>
 
