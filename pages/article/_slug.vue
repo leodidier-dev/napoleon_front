@@ -190,6 +190,7 @@ export default {
       margin-top: 32px;
       margin-left: auto;
       margin-right: auto;
+      position: relative;
 
       img {
         width: 100%;
@@ -197,8 +198,12 @@ export default {
 
       figcaption {
         @include fs-caption;
-        margin-top: 8px;
-        text-align: right;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        color: $black;
+        background: rgba($white, 0.4);
+        padding: 5px 10px;
       }
     }
 

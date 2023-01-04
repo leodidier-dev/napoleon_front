@@ -176,11 +176,12 @@ section {
 
       figcaption {
         @include fs-caption;
-        bottom: 10px;
-        right: 10px;
-        color: $white;
         position: absolute;
-        max-width: 85%;
+        right: 0;
+        bottom: 0;
+        color: $black;
+        background: rgba($white, 0.4);
+        padding: 5px 10px;
       }
     }
 
@@ -343,7 +344,7 @@ section {
           inset: 0;
           width: 100%;
           height: 100%;
-          background: rgba($black, 0.1);
+          // background: rgba($black, 0.1);
           z-index: 1;
         }
       }
@@ -496,7 +497,7 @@ section {
             inset: 0;
             width: 100%;
             height: 100%;
-            background: rgba($black, 0.1);
+            // background: rgba($black, 0.1);
             z-index: 1;
           }
         }
