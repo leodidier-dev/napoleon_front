@@ -4,7 +4,7 @@
     <div class="content">
       <nuxt-link v-if="dayArticles[0]" class="article main" :to="`/article/${dayArticles[0].attributes.slug}`">
         <div class="picture-w">
-          <img :src="formattedUrlImage(dayArticles[0])" alt="" />
+          <img :src="dayArticles[0].attributes.image.data.attributes.url" alt="" />
           <figcaption>{{ dayArticles[0].attributes.image.data.attributes.caption }}</figcaption>
           <h2 class="article-title">{{ dayArticles[0].attributes.title }}</h2>
         </div>
@@ -16,7 +16,11 @@
         <hr />
         <div class="side-title">{{ dayArticles[1].attributes.title }}</div>
         <div class="picture-w">
-          <img :src="formattedUrlImage(dayArticles[1])" alt="" />
+          <img
+            :class="dayArticles[1].attributes.image.data.attributes.url"
+            :src="dayArticles[1].attributes.image.data.attributes.url"
+            alt=""
+          />
           <figcaption>{{ dayArticles[1].attributes.image.data.attributes.caption }}</figcaption>
         </div>
         <p class="abstract">{{ extractContent(dayArticles[1].attributes.content) }}</p>
@@ -27,7 +31,7 @@
         <hr />
         <div class="side-title">{{ dayArticles[2].attributes.title }}</div>
         <div class="picture-w">
-          <img :src="formattedUrlImage(dayArticles[2])" alt="" />
+          <img :src="dayArticles[2].attributes.image.data.attributes.url" alt="" />
           <figcaption>{{ dayArticles[2].attributes.image.data.attributes.caption }}</figcaption>
         </div>
         <p class="abstract">{{ extractContent(dayArticles[2].attributes.content) }}</p>
@@ -42,7 +46,7 @@
             <p class="read-more fs-p black">[Lire la suite]</p>
           </div>
           <div class="picture-w">
-            <img :src="formattedUrlImage(dayArticles[3])" alt="" />
+            <img :src="dayArticles[3].attributes.image.data.attributes.url" alt="" />
             <figcaption>{{ dayArticles[3].attributes.image.data.attributes.caption }}</figcaption>
           </div>
         </div>
@@ -56,7 +60,7 @@
             <p class="read-more fs-p black">[Lire la suite]</p>
           </div>
           <div class="picture-w">
-            <img :src="formattedUrlImage(dayArticles[4])" alt="" />
+            <img :src="dayArticles[4].attributes.image.data.attributes.url" alt="" />
           </div>
         </div>
       </nuxt-link>
@@ -89,9 +93,11 @@ export default {
   },
 
   computed: {
-    formattedUrlImage() {
-      return (article) => article.attributes.image.data.attributes.url.replace('/uploads/', process.env.API_STORAGE);
-    },
+    // formattedUrlImage() {
+    //   return (article) =>
+    //     // console.log(article.attributes.image.data.attributes.url);
+    //     article.attributes.image.data.attributes.url;
+    // },
     dayArticles() {
       const articles = [...this.articles.data];
       // (new Date()).getTime() gets the number of ms since 1 January 1970 00:00:00 UTC
@@ -107,7 +113,9 @@ export default {
     },
   },
 
-  mounted() {},
+  mounted() {
+    console.log(this.dayArticles);
+  },
 
   methods: {
     extractContent(value) {
