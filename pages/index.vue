@@ -113,10 +113,6 @@ export default {
     },
   },
 
-  mounted() {
-    console.log(this.dayArticles);
-  },
-
   methods: {
     extractContent(value) {
       if (process.client) {

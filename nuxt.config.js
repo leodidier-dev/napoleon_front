@@ -92,7 +92,6 @@ export default {
 
   sitemap: {
     hostname: 'https://revolution-empire-67.fr',
-    routes: {},
   },
 
   env: {
