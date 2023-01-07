@@ -3,10 +3,10 @@
     <h1 class="title">A la une aujourd'hui,</h1>
     <div class="content">
       <nuxt-link v-if="dayArticles[0]" class="article main" :to="`/article/${dayArticles[0].attributes.slug}`">
+        <h2 class="article-title">{{ dayArticles[0].attributes.title }}</h2>
         <div class="picture-w">
           <img :src="dayArticles[0].attributes.image.data.attributes.url" alt="" />
           <figcaption>{{ dayArticles[0].attributes.image.data.attributes.caption }}</figcaption>
-          <h2 class="article-title">{{ dayArticles[0].attributes.title }}</h2>
         </div>
         <p class="abstract">{{ extractContent(dayArticles[0].attributes.content) }}</p>
         <p class="read-more fs-p black">[Lire la suite]</p>
@@ -144,7 +144,7 @@ section {
     }
 
     @include tablet {
-      font-size: 140rem;
+      font-size: 120rem;
       padding: 30px 0;
     }
 
@@ -210,6 +210,33 @@ section {
         grid-area: 1 / 2 / 3 / 4;
       }
 
+      .article-title {
+        // position: absolute;
+        // top: 20px;
+        // left: 50%;
+        // transform: translateX(-50%);
+        @include thunder-bold;
+        color: $white;
+        background: $red;
+        font-size: 35rem;
+        z-index: 2;
+        text-align: center;
+        text-transform: uppercase;
+        padding: 20px;
+        // width: 90%;
+
+        @include mobile-large {
+          // width: 80%;
+          font-size: 50rem;
+        }
+
+        @include tablet {
+          // top: 40px;
+          padding: 30px;
+          font-size: 75rem;
+        }
+      }
+
       .picture-w {
         position: relative;
         height: 80%;
@@ -222,30 +249,6 @@ section {
           width: 100%;
           height: 100%;
           z-index: 1;
-        }
-
-        .article-title {
-          position: absolute;
-          top: 20px;
-          left: 50%;
-          transform: translateX(-50%);
-          @include thunder-bold;
-          color: $red;
-          font-size: 40rem;
-          z-index: 2;
-          text-align: center;
-          text-transform: uppercase;
-          width: 90%;
-
-          @include mobile-large {
-            width: 80%;
-            font-size: 60rem;
-          }
-
-          @include tablet {
-            top: 40px;
-            font-size: 100rem;
-          }
         }
       }
 
@@ -332,7 +335,7 @@ section {
         }
 
         @include tablet {
-          font-size: 70rem;
+          font-size: 45rem;
         }
       }
 

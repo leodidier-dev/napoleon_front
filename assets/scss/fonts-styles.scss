@@ -1,216 +1,214 @@
 @mixin fs-sitename {
-	@include thunder-bold;
-	font-size: 50rem;
-	line-height: 100%;
-	letter-spacing: 0.05em;
-	color: $black;
+  @include thunder-bold;
+  font-size: 50rem;
+  line-height: 100%;
+  letter-spacing: 0.05em;
+  color: $black;
 
-	@include mobile-large {
-		font-size: 60rem;
-	}
+  @include mobile-large {
+    font-size: 60rem;
+  }
 
-	@include tablet {
-		font-size: 90rem;
-	}
+  @include tablet {
+    font-size: 90rem;
+  }
 }
-.fs-sitename{
-	@include fs-sitename;
+.fs-sitename {
+  @include fs-sitename;
 }
 
 @mixin fs-date {
-	@include thunder-light;
-	font-size: 18rem;
-	line-height: 100%;
-	letter-spacing: 0.05em;
-	color: $black;
+  @include thunder-light;
+  font-size: 18rem;
+  line-height: 100%;
+  letter-spacing: 0.05em;
+  color: $black;
 
-	@include tablet {
-		font-size: 24rem;
-	}
+  @include tablet {
+    font-size: 24rem;
+  }
 
-	@include desktop {
-		font-size: 20rem;
-	}
+  @include desktop {
+    font-size: 20rem;
+  }
 }
-.fs-date{
-	@include fs-date;
+.fs-date {
+  @include fs-date;
 }
-
-
 
 @mixin fs-cta {
-	@include thunder-semi-bold;
-	font-size: 18rem;
-	line-height: 100%;
-	letter-spacing: 0.05em;
-    text-transform: uppercase;
-	color: $black;
+  @include thunder-semi-bold;
+  font-size: 18rem;
+  line-height: 100%;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: $black;
 
-	@include tablet {
-		font-size: 24rem;
-	}
+  @include tablet {
+    font-size: 24rem;
+  }
 
-	@include desktop {
-		font-size: 30rem;
-	}
+  @include desktop {
+    font-size: 30rem;
+  }
 }
-.fs-cta{
-	@include fs-cta;
+.fs-cta {
+  @include fs-cta;
 }
 
 @mixin fs-intro {
-	@include thunder-light;
-	font-size: 22rem;
-	line-height: 100%;
-	letter-spacing: 0.05em;
-	color: $white;
+  @include thunder-light;
+  font-size: 22rem;
+  line-height: 100%;
+  letter-spacing: 0.05em;
+  color: $white;
 
-	@include tablet {
-		font-size: 24rem;
-	}
+  @include tablet {
+    font-size: 24rem;
+  }
 
-	@include desktop {
-		font-size: 30rem;
-	}
+  @include desktop {
+    font-size: 30rem;
+  }
 }
-.fs-intro{
-	@include fs-intro;
+.fs-intro {
+  @include fs-intro;
 }
-
 
 @mixin fs-h1 {
-	@include thunder-bold;
-	font-size: 40rem;
-	line-height: 100%;
-	letter-spacing: 0.05em;
-    text-transform: uppercase;
+  @include thunder-bold;
+  font-size: 40rem;
+  line-height: 100%;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 
-	@include tablet {
-		font-size: 55rem;
-	}
+  @include tablet {
+    font-size: 55rem;
+  }
 
-	@include desktop {
-		font-size: 50rem;
-	}
+  @include desktop {
+    font-size: 50rem;
+  }
 }
 .fs-h1 {
-	@include fs-h1;
+  @include fs-h1;
 }
 
 @mixin fs-h2 {
-    @include thunder-bold;
-	font-size: 35rem;
-	line-height: 100%;
-	letter-spacing: 0;
-    text-transform: uppercase;
+  @include thunder-bold;
+  font-size: 35rem;
+  line-height: 100%;
+  letter-spacing: 0;
+  text-transform: uppercase;
 
-	@include tablet {
-		font-size: 45rem;
-	}
+  @include tablet {
+    font-size: 45rem;
+  }
 
-	@include desktop {
-		font-size: 40rem;
-	}
+  @include desktop {
+    font-size: 40rem;
+  }
 }
 .fs-h2 {
-	@include fs-h2;
+  @include fs-h2;
 }
 
 @mixin fs-h3 {
-    @include thunder-bold;
-	font-size: 28rem;
-	line-height: 100%;
-	letter-spacing: 0;
-    text-transform: uppercase;
+  @include thunder-bold;
+  font-size: 28rem;
+  line-height: 100%;
+  letter-spacing: 0;
+  text-transform: uppercase;
 
-	@include tablet {
-		font-size: 35rem;
-	}
+  @include tablet {
+    font-size: 35rem;
+  }
 
-	@include desktop {
-		font-size: 30rem;
-	}
+  @include desktop {
+    font-size: 30rem;
+  }
 }
 .fs-h3 {
-	@include fs-h3;
+  @include fs-h3;
 }
 
 @mixin fs-article-title {
-    @include thunder-bold;
-	font-size: 70rem;
-	// line-height: 100%;
-	letter-spacing: 0;
-    text-transform: uppercase;
-	color: #A81B1C;
+  @include thunder-bold;
+  font-size: 70rem;
+  // line-height: 100%;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: #a81b1c;
+  margin-top: 8px;
 
-	@include tablet {
-		font-size: 120rem;
-	}
+  @include tablet {
+    font-size: 120rem;
+  }
 
-	@include desktop {
-		font-size: 90rem;
-	}
+  @include desktop {
+    font-size: 90rem;
+  }
 }
-.fs-article-title{
-	@include fs-article-title;
+.fs-article-title {
+  @include fs-article-title;
 }
 
 @mixin fs-article-category {
-    @include thunder-bold;
-	font-size: 30rem;
-	line-height: 100%;
-	letter-spacing: 0.05em;
-    text-transform: uppercase;
-	color: #022859;
+  @include thunder-bold;
+  font-size: 30rem;
+  line-height: 100%;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #022859;
 
-	@include tablet {
-		font-size: 45rem;
-	}
+  @include tablet {
+    font-size: 45rem;
+  }
 
-	@include desktop {
-		font-size: 35rem;
-	}
+  @include desktop {
+    font-size: 35rem;
+  }
 }
-.fs-article-category{
-	@include fs-article-category;
+.fs-article-category {
+  @include fs-article-category;
 }
 
 @mixin fs-p {
-	@include thunder-light;
-    font-weight: 500;
-	font-size: 18rem;
-	line-height: 100%;
-	letter-spacing: 0;
-	// color: #202124;
-	letter-spacing: 0.05em;
+  @include thunder-light;
+  font-weight: 500;
+  font-size: 18rem;
+  line-height: 100%;
+  letter-spacing: 0;
+  // color: #202124;
+  letter-spacing: 0.05em;
 
-	@include tablet {
-		font-size: 24rem;
-	}
+  @include tablet {
+    font-size: 24rem;
+  }
 
-	@include desktop {
-		font-size: 20rem;
-	}
+  @include desktop {
+    font-size: 20rem;
+  }
 }
 .fs-p {
-	@include fs-p;
+  @include fs-p;
 }
 
 @mixin fs-caption {
-	@include thunder-semi-bold;
-	font-size: 16rem;
-	line-height: 100%;
-	letter-spacing: 0.05em;
-    text-transform: uppercase;
+  @include thunder-semi-bold;
+  font-size: 16rem;
+  line-height: 100%;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 
-	@include tablet {
-		font-size: 18rem;
-	}
+  @include tablet {
+    font-size: 18rem;
+  }
 
-	@include desktop {
-		font-size: 18rem;
-	}
+  @include desktop {
+    font-size: 18rem;
+  }
 }
-.fs-caption{
-	@include fs-caption;
+.fs-caption {
+  @include fs-caption;
 }

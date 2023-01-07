@@ -149,7 +149,7 @@ nav {
 
       @include tablet {
         max-width: none;
-        font-size: 28rem;
+        font-size: 22rem;
       }
     }
 
