@@ -1,10 +1,11 @@
 query getArticles {
-  articles {
+  articles(sort: "createdAt:desc", pagination: { limit: 11 }) {
     data {
       attributes {
         slug
         title
         content
+        createdAt
         category {
           data {
             attributes {

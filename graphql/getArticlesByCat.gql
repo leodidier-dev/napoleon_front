@@ -1,5 +1,5 @@
 query getArticlesByCat($slug: String!) {
-  articles(filters: { category: { slug: { eq: $slug } } }, sort: "title:asc") {
+  articles(filters: { category: { slug: { eq: $slug } } }, sort: "title:asc", pagination: { limit: 500 }) {
     data {
       attributes {
         slug

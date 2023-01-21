@@ -134,7 +134,7 @@
 
 @mixin fs-article-title {
   @include thunder-bold;
-  font-size: 70rem;
+  font-size: 40rem;
   // line-height: 100%;
   letter-spacing: 0;
   text-transform: uppercase;
@@ -142,11 +142,11 @@
   margin-top: 8px;
 
   @include tablet {
-    font-size: 120rem;
+    font-size: 70rem;
   }
 
   @include desktop {
-    font-size: 90rem;
+    font-size: 70rem;
   }
 }
 .fs-article-title {
@@ -155,14 +155,14 @@
 
 @mixin fs-article-category {
   @include thunder-bold;
-  font-size: 30rem;
+  font-size: 25rem;
   line-height: 100%;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: #022859;
 
   @include tablet {
-    font-size: 45rem;
+    font-size: 40rem;
   }
 
   @include desktop {

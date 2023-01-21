@@ -16,7 +16,7 @@ export default {
   position: absolute;
   bottom: 0;
   width: 100%;
-  border-top: 2px solid $black;
+  border-top: 1px solid rgba($black, 0.3);
   padding: 14px 0;
   text-align: center;
   max-width: 1920px;

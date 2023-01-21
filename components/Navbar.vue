@@ -118,7 +118,7 @@ nav {
     row-gap: 10px;
     align-items: center;
     text-align: center;
-    border-bottom: 2px solid $black;
+    border-bottom: 1px solid rgba($black, 0.3);
 
     @include mobile-large {
       width: 100%;
@@ -147,7 +147,7 @@ nav {
       text-transform: uppercase;
       max-width: 250px;
 
-      @include tablet {
+      @include mobile-large {
         max-width: none;
         font-size: 22rem;
       }
@@ -161,8 +161,8 @@ nav {
           z-index: 3;
           bottom: -8px;
           width: 100%;
-          height: 2px;
-          background-color: $black;
+          height: 1px;
+          background-color: rgba($black, 0.3);
           transform: scale(0);
           transition: transform 0.4s ease-out;
         }

@@ -6,7 +6,7 @@
         v-for="(type, index) in types"
         ref="typeCta"
         :key="index"
-        class="fs-article-title type"
+        class="type"
         :class="index === 0 ? 'selected-type' : ''"
         @click="updateSelectedTypes(type, index)"
       >
@@ -109,6 +109,23 @@ export default {
     .type {
       font-size: 80rem;
       transition: transform 0.4s ease, opacity 0.4s ease;
+      @include thunder-bold;
+      font-size: 40rem;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      color: #a81b1c;
+      margin-top: 8px;
+      width: 100%;
+      text-align: start;
+
+      @include tablet {
+        width: auto;
+        font-size: 80rem;
+      }
+
+      @include desktop {
+        font-size: 50rem;
+      }
 
       &:not(.selected-type) {
         opacity: 0.4;
@@ -130,28 +147,17 @@ export default {
     padding: 0;
 
     li {
-      font-size: 36rem;
-      position: relative;
-      list-style: inside;
-      width: fit-content;
+      font-size: 30rem;
       margin-bottom: 16px;
-
-      &:before {
-        content: '';
-        position: absolute;
-        z-index: 3;
-        bottom: -2px;
-        width: calc(100% - 39px);
-        height: 1px;
-        background-color: $black;
-        transform: scale(0);
-        transition: transform 0.4s ease-out;
-      }
+      transition: transform 0.4s ease-out;
+      text-transform: initial;
 
       @include hover {
-        &:before {
-          transform: scale(1);
-        }
+        transform: translateX(2px);
+      }
+
+      a {
+        display: block;
       }
     }
   }
