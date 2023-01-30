@@ -1,5 +1,6 @@
 <template>
   <section id="article-content" ref="articleW" class="page">
+    <nuxt-link :to="`/categorie/${categorySlug}`" class="back"> <img src="~/assets/icons/back-arrow.svg" alt="" /> Retour </nuxt-link>
     <h2 class="fs-article-category">{{ category }}</h2>
     <h1 class="fs-article-title">{{ title }}</h1>
     <button ref="scrollTopCta" @click="scrollTop">
@@ -38,6 +39,9 @@ export default {
     category() {
       return this.articles.data[0].attributes.category.data.attributes.name;
     },
+    categorySlug() {
+      return this.articles.data[0].attributes.category.data.attributes.slug;
+    },
     title() {
       return this.articles.data[0].attributes.title;
     },
@@ -56,12 +60,21 @@ export default {
     const links = this.$refs.articleW.querySelectorAll('a');
 
     links.forEach((link) => {
-      link.setAttribute('target', '_blank');
+      if (!link.classList.contains('back')) link.setAttribute('target', '_blank');
     });
 
     window.addEventListener('resize', this.onResize);
 
     if (document.documentElement.scrollHeight <= window.innerHeight) this.$refs.scrollTopCta.style.display = 'none';
+    this.$nextTick(() => {
+      const imgs = this.$refs.articleW.querySelectorAll('figure');
+      const captions = this.$refs.articleW.querySelectorAll('figcaption');
+      setTimeout(() => {
+        captions.forEach((caption, i) => {
+          imgs[i].style.paddingBottom = caption.offsetHeight + 'px';
+        });
+      }, 50);
+    });
   },
 
   beforeDestroy() {
@@ -93,6 +106,39 @@ export default {
   margin-right: auto;
   margin-top: 50px;
   padding-bottom: 100px;
+
+  .back {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+    color: $black;
+    margin-bottom: 40px;
+    @include thunder-bold;
+    font-size: 18rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+
+    @include tablet {
+      font-size: 18rem;
+    }
+
+    @include desktop {
+      margin-bottom: 60px;
+      font-size: 18rem;
+    }
+
+    @include hover {
+      img {
+        transform: translateX(-5px);
+      }
+    }
+
+    img {
+      transition: transform 0.4s ease;
+      width: 10px;
+    }
+  }
 
   button {
     display: flex;
@@ -197,13 +243,15 @@ export default {
       }
 
       figcaption {
-        @include fs-caption;
+        @include thunder-light;
+        font-size: 14rem;
+        font-style: italic;
+        text-align: right;
+        color: rgba($black, 1);
         position: absolute;
         right: 0;
         bottom: 0;
-        color: $black;
-        background: rgba($white, 0.4);
-        padding: 5px 10px;
+        padding-top: 10px;
       }
     }
 

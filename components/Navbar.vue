@@ -7,6 +7,9 @@
     <nav>
       <ul class="menu">
         <li class="item">
+          <nuxt-link to="/" data-cursor> Accueil </nuxt-link>
+        </li>
+        <li class="item">
           <nuxt-link to="/a-propos" data-cursor> A propos </nuxt-link>
         </li>
         <li v-for="parent in parents" :key="parent.id" class="item" data-cursor>

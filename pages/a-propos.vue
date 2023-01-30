@@ -54,6 +54,15 @@ export default {
     window.addEventListener('resize', this.onResize);
 
     if (document.documentElement.scrollHeight <= window.innerHeight) this.$refs.scrollTopCta.style.display = 'none';
+    this.$nextTick(() => {
+      const imgs = this.$refs.aboutW.querySelectorAll('figure');
+      const captions = this.$refs.aboutW.querySelectorAll('figcaption');
+      setTimeout(() => {
+        captions.forEach((caption, i) => {
+          imgs[i].style.paddingBottom = caption.offsetHeight + 'px';
+        });
+      }, 50);
+    });
   },
 
   beforeDestroy() {
@@ -174,19 +183,22 @@ export default {
       margin-top: 32px;
       margin-left: auto;
       margin-right: auto;
+      position: relative;
 
       img {
         width: 100%;
       }
 
       figcaption {
-        @include fs-caption;
+        @include thunder-light;
+        font-size: 14rem;
+        font-style: italic;
+        text-align: right;
+        color: rgba($black, 1);
         position: absolute;
         right: 0;
         bottom: 0;
-        color: $black;
-        background: rgba($white, 0.4);
-        padding: 5px 10px;
+        padding-top: 10px;
       }
     }
 

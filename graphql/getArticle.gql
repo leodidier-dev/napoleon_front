@@ -9,6 +9,7 @@ query getArticle($slug: String!) {
           data {
             attributes {
               name
+              slug
             }
           }
         }
