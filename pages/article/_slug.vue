@@ -196,7 +196,6 @@ export default {
     p {
       @include fs-p;
       text-align: justify;
-      text-indent: 40px;
       margin-top: 16px;
 
       &:first-of-type {
@@ -205,10 +204,6 @@ export default {
           font-weight: 800;
         }
       }
-    }
-
-    p:has(img) {
-      text-indent: unset;
     }
 
     img {

@@ -151,7 +151,6 @@ export default {
     p {
       @include fs-p;
       text-align: justify;
-      text-indent: 40px;
       margin-top: 16px;
 
       &:first-of-type {
