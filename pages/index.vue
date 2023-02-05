@@ -77,18 +77,41 @@ export default {
     };
   },
 
+  data() {
+    return {
+      articlesSelected: [],
+    };
+  },
+
   head() {
     return {};
   },
 
   computed: {
     halfArticles() {
-      return this.articles.data.slice(1, 5);
+      return this.articlesSelected.slice(1, 5);
     },
 
     noImgArticles() {
-      return this.articles.data.slice(5, 12);
+      return this.articlesSelected.slice(5, 13);
     },
+  },
+
+  mounted() {
+    const filledCategories = [];
+
+    this.articles.data.forEach((article, i) => {
+      const curCat = article.attributes.category.data.attributes.name;
+
+      let catCount = 0;
+      filledCategories.forEach((cat) => {
+        if (curCat === cat) catCount++;
+      });
+      if (catCount !== 3) {
+        filledCategories.push(curCat);
+        this.articlesSelected.push(article);
+      }
+    });
   },
 
   methods: {

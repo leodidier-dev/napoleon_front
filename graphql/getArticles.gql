@@ -1,5 +1,5 @@
 query getArticles {
-  articles(sort: "createdAt:desc", pagination: { limit: 11 }) {
+  articles(sort: "createdAt:desc", pagination: { limit: 100 }) {
     data {
       attributes {
         slug
